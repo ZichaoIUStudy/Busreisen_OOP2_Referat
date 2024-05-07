@@ -4,17 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="546c9746-5502-48ab-a53e-cca421bee78c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/iuinformatik/busreisen/busreisen_oop2_referat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/iuinformatik/busreisen/busreisen_oop2_referat/hello-view.fxml" afterDir="false" />
+    <list default="true" id="546c9746-5502-48ab-a53e-cca421bee78c" name="Changes" comment="Initialize project">
+      <change afterPath="$PROJECT_DIR$/src/main/java/iuinformatik/busreisen/busreisen_oop2_referat/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/iuinformatik/busreisen/busreisen_oop2_referat/objects/Bus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/iuinformatik/busreisen/busreisen_oop2_referat/objects/Busreise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/iuinformatik/busreisen/busreisen_oop2_referat/objects/Fahrer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/iuinformatik/busreisen/busreisen_oop2_referat/objects/Passagier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="bbdaff88-9d25-498c-8af9-44ce0846264e" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -23,9 +37,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2g6E5UduP1pURgA9lxEuMCEEjfE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -34,7 +48,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "Application.Test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true"
   }
@@ -48,6 +65,19 @@
       <option name="presentableId" value="Default" />
       <updated>1715009451310</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initialize project">
+      <option name="closed" value="true" />
+      <created>1715009640496</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715009640496</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initialize project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initialize project" />
   </component>
 </project>
