@@ -1,5 +1,13 @@
-# Busreise
+# Busreisen - Verwaltungssystem
 
-To work properly with database, please download PostgreSQL on your computer. 
-Set your password as 'admin1' (rest parts during installation keep as default), and create database called 'busreisen'.
-You can use SQL Shell, after login as user 'progres', and type 'CREATE DATABASE busreisen;'.
+## Klassendiagramm
+![Klassendiagramm](https://github.com/ZichaoIUStudy/Busreisen_OOP2_Referat/blob/main/Klassendiagramm.png)
+
+## Datenbank Konfiguration
+
+**Requires:** PostgreSQL (Standard Installationseinstellungen, außer Passwort: &nbsp; `admin1`)<br/>
+* Erstelle Datenbank: &nbsp; `CREATE DATABASE busreisen;`
+
+SQL Shell Login:
+* Benutzer: &nbsp; `progres`
+* Passwort: &nbsp; `admin1`
