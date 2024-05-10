@@ -1,5 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
+import iuinformatik.busreisen.busreisen_oop2_referat.db.DB;
+
 import java.sql.*;
 
 public class JDBCTest {

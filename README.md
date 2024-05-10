@@ -8,6 +8,6 @@
 **Requires:** PostgreSQL (Standard Installationseinstellungen, außer Passwort: &nbsp; `admin1`)<br/>
 * Erstelle Datenbank: &nbsp; `CREATE DATABASE busreisen;`
 
-SQL Shell Login:
-* Benutzer: &nbsp; `progres`
+**SQL Shell Login:**
+* Benutzer: &nbsp; `postgres`
 * Passwort: &nbsp; `admin1`
