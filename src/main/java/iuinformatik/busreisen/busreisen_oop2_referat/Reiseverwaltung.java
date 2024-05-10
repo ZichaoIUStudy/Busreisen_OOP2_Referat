@@ -39,18 +39,18 @@ public class Reiseverwaltung {
     }
 
     public void reiseHinzufuegen(Busreise busreise) {
-        // TODO: DB - INSERT
+        // TODO: VALIDATE + DB - INSERT
     }
 
     public void busHinzufuegen(Bus bus) {
-        // TODO: DB - INSERT
+        // TODO: VALIDATE + DB - INSERT
     }
 
     public void fahrerHinzufuegen(Fahrer fahrer) {
-        // TODO: DB - INSERT
+        // TODO: VALIDATE + DB - INSERT
     }
 
     public void reiseBuchen(Busreise busreise, Buchung buchung) {
-        // TODO: DB - INSERT
+        // TODO: VALIDATE + DB - INSERT
     }
 }
