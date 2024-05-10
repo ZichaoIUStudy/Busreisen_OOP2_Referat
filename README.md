@@ -1,7 +1,7 @@
-# Busreisen - Verwaltungssystem
+# Verwaltungssystem für Busreisen
 
 ## Klassendiagramm
-![Klassendiagramm](https://github.com/ZichaoIUStudy/Busreisen_OOP2_Referat/blob/main/Klassendiagramm.png)
+![UML Klassendiagramm](https://github.com/ZichaoIUStudy/Busreisen_OOP2_Referat/blob/main/UML_Klassendiagramm.png)
 
 ## Datenbank Konfiguration
 
