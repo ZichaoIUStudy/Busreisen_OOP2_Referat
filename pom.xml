@@ -84,7 +84,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                iuinformatik.busreisen.busreisen_oop2_referat/iuinformatik.busreisen.busreisen_oop2_referat.HelloApplication
+                                iuinformatik.busreisen.busreisen_oop2_referat/iuinformatik.busreisen.busreisen_oop2_referat.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
