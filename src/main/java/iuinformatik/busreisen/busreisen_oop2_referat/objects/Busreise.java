@@ -53,7 +53,7 @@ public class Busreise {
         return zielort;
     }
 
-    public void setZielort(Adresse Zielort) {
+    public void setZielort(Adresse newZielort) {
         this.zielort = newZielort;
     }
     //kostenProPerson
