@@ -1,7 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.db.DB;
-
+import iuinformatik.busreisen.busreisen_oop2_referat.database.*;
 import java.sql.*;
 
 public class JDBCTest {
@@ -11,7 +10,7 @@ public class JDBCTest {
 
             try {
                 conn.setAutoCommit(false);
-                drop(conn); create(conn); insert(conn);
+                DB.drop(conn, "testTable"); DB.create(conn, "testTable", "name", DBType.VARCHAR); DB.insert(conn);
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
@@ -24,23 +23,6 @@ public class JDBCTest {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    static void drop(Connection conn) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("DROP TABLE IF EXISTS test");
-        int n = ps.executeUpdate();
-    }
-
-    static void create(Connection conn) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("CREATE TABLE test (id INT, num INT)");
-        int n = ps.executeUpdate();
-    }
-
-    static void insert(Connection conn) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO test (id, num) VALUES (?,?)");
-        ps.setObject(1, 1); // id
-        ps.setObject(2, 999); // num
-        int n = ps.executeUpdate(); // 1
     }
 
 }

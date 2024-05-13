@@ -1,4 +1,4 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.db;
+package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
 import java.io.IOException;
 import java.io.InputStream;
