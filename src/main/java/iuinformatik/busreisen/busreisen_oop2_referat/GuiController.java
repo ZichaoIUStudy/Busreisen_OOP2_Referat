@@ -1,6 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class GuiController {
@@ -12,4 +13,6 @@ public class GuiController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+    @FXML
+    protected void testButtonClick() {welcomeText.setText("test test");}
 }

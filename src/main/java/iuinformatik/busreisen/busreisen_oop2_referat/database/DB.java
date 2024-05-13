@@ -27,46 +27,45 @@ public class DB {
 
     // Table operations
     public static void drop(Connection conn, String tableName) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("DROP TABLE IF EXISTS (?))");
-        ps.setObject(1, tableName); // name
+        String safeTableName = tableName.trim();
+        String sql = "DROP TABLE IF EXISTS " +safeTableName;
+        PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     public static void create(Connection conn, String tableName) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS (?)) (id SERIAL PRIMARY KEY)");
-        ps.setObject(1,tableName); // name
+        String safeTableName = tableName.trim();
+        String sql = String.format("CREATE TABLE IF NOT EXISTS %s (id SERIAL PRIMARY KEY)",safeTableName);
+        PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void create(Connection conn, String tableName, String attributeName, DBType attributType) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("CREATE TABLE IF NOT EXISTS (?)) (id SERIAL PRIMARY KEY" +
-                ", (?) (?))");
-        ps.setObject(1,tableName);
-        ps.setObject(2,attributeName);
-        ps.setObject(3,attributType);
-        int n = ps.executeUpdate();
-    }
-
-    public static void addColumn(Connection conn, String tableName, String attributeName, DBType attributType) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("ALTER TABLE (?)) ADD (?) (?)");
-        ps.setObject(1,tableName);
-        ps.setObject(2,attributeName);
-        ps.setObject(3,attributType);
+    public static void addColumn(Connection conn, String tableName, String attributeName, DBType attributeType) throws SQLException {
+        String safeTableName = tableName.trim();
+        String safeAttributeName = attributeName.trim();
+        String sql = String.format("ALTER TABLE %s ADD %s %s", safeTableName, safeAttributeName, attributeType);
+        PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     public static void dropColumn(Connection conn, String tableName, String attributeName) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("ALTER TABLE (?)) DROP COLUMN (?)");
-        ps.setObject(1,tableName);
-        ps.setObject(2,attributeName);
+        String safeTableName = tableName.trim();
+        String safeAttributeName = attributeName.trim();
+        String sql = String.format("ALTER TABLE %s DROP COLUMN %s", safeTableName,safeAttributeName);
+        PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     // Table functions
     // waiting to be changed.
-    public static void insert(Connection conn) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO test (id, num) VALUES (DEFAULT,?)");
-        ps.setObject(1, 999); // num
-        int n = ps.executeUpdate(); // 1
+    public static void insert(Connection conn, int id, int grade, String name, String gender) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement(
+                "INSERT INTO students (id, grade, name, gender) VALUES (?,?,?,?)")) {
+            ps.setObject(1, id); // 注意：索引从1开始
+            ps.setObject(2, grade); // grade
+            ps.setObject(3, name); // name
+            ps.setObject(4, gender); // gender
+            int n = ps.executeUpdate(); // 1
+        }
     }
 }
