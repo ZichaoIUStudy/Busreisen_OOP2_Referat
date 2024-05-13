@@ -10,7 +10,10 @@ public class JDBCTest {
 
             try {
                 conn.setAutoCommit(false);
-                DB.drop(conn, "testTable"); DB.create(conn, "testTable", "name", DBType.VARCHAR); DB.insert(conn);
+                DB.drop(conn, "testTable");
+                DB.create(conn, "testTable", "name", DBType.String);
+                DB.addColumn(conn, "testTable", "age", DBType.Int);
+                //DB.insert(conn);
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();

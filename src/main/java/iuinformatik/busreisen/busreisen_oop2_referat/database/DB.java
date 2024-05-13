@@ -47,6 +47,20 @@ public class DB {
         int n = ps.executeUpdate();
     }
 
+    public static void addColumn(Connection conn, String tableName, String attributeName, DBType attributType) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("ALTER TABLE (?)) ADD (?) (?)");
+        ps.setObject(1,tableName);
+        ps.setObject(2,attributeName);
+        ps.setObject(3,attributType);
+        int n = ps.executeUpdate();
+    }
+
+    public static void dropColumn(Connection conn, String tableName, String attributeName) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("ALTER TABLE (?)) DROP COLUMN (?)");
+        ps.setObject(1,tableName);
+        ps.setObject(2,attributeName);
+        int n = ps.executeUpdate();
+    }
 
     // Table functions
     // waiting to be changed.
