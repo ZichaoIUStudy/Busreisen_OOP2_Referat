@@ -3,37 +3,37 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
 
 public class Fahrer {
+
     private int fahrerNr;
     private String name;
     private String vorname;
     private Fuehrerscheinklasse hoechsteFuehrerscheinklasse;
 
-    //fahrerNr
     public int getFahrerNr() {
         return fahrerNr;
     }
-    //name
+
     public String getName() {
         return name;
     }
 
-    public void setName (String newName) {
-        this.name = newName;
+    public void setName(String name) {
+        this.name = name;
     }
-    //vorname
+
     public String getVorname() {
         return vorname;
     }
 
-    public void setVorname (String newVorname) {
-        this.vorname = newVorname;
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
     }
-    //hoechsteFuehrerscheinklasse
+
     public Fuehrerscheinklasse getHoechsteFuehrerscheinklasse() {
         return hoechsteFuehrerscheinklasse;
     }
 
-    public void setHoechsteFuehrerscheinklasse (Fuehrerscheinklasse newHoechsteFuehrerscheinklasse) {
-        this.hoechsteFuehrerscheinklasse = newHoechsteFuehrerscheinklasse;
+    public void setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse hoechsteFuehrerscheinklasse) {
+        this.hoechsteFuehrerscheinklasse = hoechsteFuehrerscheinklasse;
     }
 }
