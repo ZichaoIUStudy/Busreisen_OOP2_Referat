@@ -1,5 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
+import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
+
 public class Fahrer {
     private int fahrerNr;
     private String name;
