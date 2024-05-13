@@ -3,6 +3,7 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 import java.security.Timestamp;
 
 public class Busreise {
+
     private int reiseNr;
     private Timestamp fahrtbeginn;
     private Timestamp fahrtende;
@@ -11,57 +12,55 @@ public class Busreise {
     private Adresse zielort;
     private Double kostenProPerson;
 
-    //reiseNr
-    public int getReiseNr(){
+    public int getReiseNr() {
         return reiseNr;
     }
 
-    //fahrtbeginn
-    public Timestamp getFahrtbeginn(){
+    public Timestamp getFahrtbeginn() {
         return fahrtbeginn;
     }
 
-    public void setFahrtbeginn(Timestamp newFahrtbeginn) {
-        this.fahrtbeginn = newFahrtbeginn;
+    public void setFahrtbeginn(Timestamp fahrtbeginn) {
+        this.fahrtbeginn = fahrtbeginn;
     }
-    //fahrtEnde
-    public Timestamp getFahrtEnde(){
+
+    public Timestamp getFahrtEnde() {
         return fahrtende;
     }
 
-    public void setFahrtende(Timestamp newFahrtende) {
-        this.fahrtende = newFahrtende;
+    public void setFahrtende(Timestamp fahrtende) {
+        this.fahrtende = fahrtende;
     }
-    //fahrer
-    public Fahrer getFahrer(){
+
+    public Fahrer getFahrer() {
         return fahrer;
     }
 
-    public void setFahrer(Fahrer newFahrer) {
-        this.fahrer = newFahrer;
+    public void setFahrer(Fahrer fahrer) {
+        this.fahrer = fahrer;
     }
-    //Bus
-    public Bus getBus(){
+
+    public Bus getBus() {
         return bus;
     }
 
-    public void setBus(Bus newBus) {
-        this.bus = newBus;
+    public void setBus(Bus bus) {
+        this.bus = bus;
     }
-    //Zielort
-    public Adresse getZielort(){
+
+    public Adresse getZielort() {
         return zielort;
     }
 
-    public void setZielort(Adresse newZielort) {
-        this.zielort = newZielort;
+    public void setZielort(Adresse zielort) {
+        this.zielort = zielort;
     }
-    //kostenProPerson
-    public Double getKostenProPerson(){
+
+    public Double getKostenProPerson() {
         return kostenProPerson;
     }
 
-    public void setKostenProPerson(Double newKostenProPerson) {
-        this.kostenProPerson = newKostenProPerson;
+    public void setKostenProPerson(Double kostenProPerson) {
+        this.kostenProPerson = kostenProPerson;
     }
 }

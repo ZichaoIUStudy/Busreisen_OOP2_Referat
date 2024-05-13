@@ -1,41 +1,41 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 public class Adresse {
+
     private String strasse;
     private int hausnummer;
     private String plz;
     private String ort;
 
-    //Strasse
-    public String getStrasse () {
+    public String getStrasse() {
         return strasse;
     }
 
-    public void setStrasse (String newStrasse) {
-        this.strasse = newStrasse;
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
     }
-    //Hausnummer
-    public int getHausnummer () {
+
+    public int getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer (int newHausnummer) {
-        this.hausnummer= newHausnummer;
+    public void setHausnummer(int hausnummer) {
+        this.hausnummer = hausnummer;
     }
-    //plz
-    public String getPlz () {
+
+    public String getPlz() {
         return plz;
     }
 
-    public void setPlz (String newPlz) {
-        this.plz= newPlz;
+    public void setPlz(String plz) {
+        this.plz = plz;
     }
-    //ort
-    public String getOrt () {
+
+    public String getOrt() {
         return ort;
     }
 
-    public void setOrt (String newOrt) {
-        this.ort= newOrt;
+    public void setOrt(String ort) {
+        this.ort = ort;
     }
 }

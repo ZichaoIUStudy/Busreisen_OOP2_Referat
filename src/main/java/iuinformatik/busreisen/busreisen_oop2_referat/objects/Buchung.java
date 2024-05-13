@@ -3,38 +3,37 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Praeferenz;
 
 public class Buchung {
+
     private int buchungsNr;
     private Passagier passagier;
     private int sitzplatz = -1;
     private Praeferenz praeferenz = Praeferenz.KEINE;
 
-    //BuchungsNr
     public int getBuchungsNr() {
         return buchungsNr;
     }
 
-    //Passagier
     public Passagier getPassagier() {
         return passagier;
     }
 
-    public void setPassagier (Passagier newPassagier) {
-        this.passagier = newPassagier;
+    public void setPassagier(Passagier passagier) {
+        this.passagier = passagier;
     }
-    //Sitzplatz
+
     public int getSitzplatz() {
         return sitzplatz;
     }
 
-    public void setSitzplatz (int newSitzplatz) {
-        this.sitzplatz = newSitzplatz;
+    public void setSitzplatz(int sitzplatz) {
+        this.sitzplatz = sitzplatz;
     }
-    //Praeferenz
+
     public Praeferenz getPraeferenz() {
         return praeferenz;
     }
-    public void setPraeferenz (Praeferenz newPraeferenz) {
-        this.praeferenz = newPraeferenz;
-    }
 
+    public void setPraeferenz(Praeferenz praeferenz) {
+        this.praeferenz = praeferenz;
+    }
 }
