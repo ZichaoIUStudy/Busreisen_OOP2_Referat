@@ -9,7 +9,7 @@ public class JDBCTest {
             System.out.println("_________Connected to the PostgreSQL database__________");
             try {
                 conn.setAutoCommit(false);
-                DB.insert(conn, 889, 1, "xxx", "M");
+                //DB.insert(conn, 889, 1, "xxx", "M");
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();

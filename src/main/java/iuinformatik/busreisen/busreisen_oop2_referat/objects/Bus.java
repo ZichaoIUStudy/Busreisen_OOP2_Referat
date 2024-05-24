@@ -1,6 +1,8 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Bus {
 
@@ -9,6 +11,8 @@ public class Bus {
     private Date tuevTermin;
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
+    private int platz;
+    public List<Boolean> sitzplatz = new ArrayList<>(platz);
 
     public String getKennzeichen() {
         return kennzeichen;
@@ -49,4 +53,8 @@ public class Bus {
     public void setKostenProKilometer(Double kostenProKilometer) {
         this.kostenProKilometer = kostenProKilometer;
     }
+
+    public int getPlatz() {return platz;}
+
+    public void setPlatz(int platz) {this.platz = platz;}
 }

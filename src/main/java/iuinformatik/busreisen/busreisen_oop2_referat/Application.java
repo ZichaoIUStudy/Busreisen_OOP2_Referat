@@ -1,6 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
+import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +27,7 @@ public class Application extends javafx.application.Application {
 
         Button submit = new Button("Add New Table");
         submit.setOnMouseClicked(mouseEvent -> {
-            String name = String.valueOf(createInput.getText());
+            Table name = Table.valueOf(createInput.getText());
             try (var conn =  DB.connect()){
                 System.out.println("_________Connected to the PostgreSQL database__________");
                 try {
@@ -51,7 +52,7 @@ public class Application extends javafx.application.Application {
 
         Button drop = new Button("Drop Table");
         drop.setOnMouseClicked(mouseEvent -> {
-            String name = String.valueOf(dropInput.getText());
+            Table name = Table.valueOf(dropInput.getText());
             try (var conn =  DB.connect()){
                 System.out.println("_________Connected to the PostgreSQL database__________");
                 try {
@@ -73,7 +74,6 @@ public class Application extends javafx.application.Application {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menu);
-
 
         Scene scene = new Scene(borderPane, 320, 240);
         stage.setTitle("Hello!");
