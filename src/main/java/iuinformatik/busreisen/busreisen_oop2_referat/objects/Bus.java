@@ -11,8 +11,8 @@ public class Bus {
     private Date tuevTermin;
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
-    private int platz;
-    public List<Boolean> sitzplatz = new ArrayList<>(platz);
+    private int anzahlSitzplaetze;
+    public List<Boolean> sitzplaetze = new ArrayList<>(anzahlSitzplaetze);
 
     public String getKennzeichen() {
         return kennzeichen;
@@ -54,7 +54,19 @@ public class Bus {
         this.kostenProKilometer = kostenProKilometer;
     }
 
-    public int getPlatz() {return platz;}
+    public int getAnzahlSitzplaetze() {
+        return anzahlSitzplaetze;
+    }
 
-    public void setPlatz(int platz) {this.platz = platz;}
+    public void setAnzahlSitzplaetze(int anzahlSitzplaetze) {
+        this.anzahlSitzplaetze = anzahlSitzplaetze;
+    }
+
+    public List<Boolean> getSitzplaetze() {
+        return sitzplaetze;
+    }
+
+    public void setSitzplatzBesetzt(int sitzplatzNr, boolean besetzt) {
+        this.sitzplaetze.set(sitzplatzNr, besetzt);
+    }
 }
