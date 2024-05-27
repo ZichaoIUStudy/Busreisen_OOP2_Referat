@@ -1,18 +1,19 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
+
+import java.util.*;
 
 public class Bus {
 
     private String kennzeichen;
+    private BusTyp busTyp;
     private Date zulassung;
     private Date tuevTermin;
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
     private int anzahlSitzplaetze;
-    public List<Boolean> sitzplaetze = new ArrayList<>(anzahlSitzplaetze);
+    private List<Boolean> sitzplaetze;
 
     public String getKennzeichen() {
         return kennzeichen;
@@ -20,6 +21,14 @@ public class Bus {
 
     public void setKennzeichen(String kennzeichen) {
         this.kennzeichen = kennzeichen;
+    }
+
+    public BusTyp getBusTyp() {
+        return busTyp;
+    }
+
+    public void setBusTyp(BusTyp busTyp) {
+        this.busTyp = busTyp;
     }
 
     public Date getZulassung() {
@@ -60,13 +69,14 @@ public class Bus {
 
     public void setAnzahlSitzplaetze(int anzahlSitzplaetze) {
         this.anzahlSitzplaetze = anzahlSitzplaetze;
+        this.sitzplaetze = new ArrayList<>(Collections.nCopies(anzahlSitzplaetze, false));
     }
 
     public List<Boolean> getSitzplaetze() {
         return sitzplaetze;
     }
 
-    public void setSitzplatzBesetzt(int sitzplatzNr, boolean besetzt) {
-        this.sitzplaetze.set(sitzplatzNr, besetzt);
+    public void setSitzplatzBesetzt(int sitzplatzNr, Boolean besetzt) {
+        this.sitzplaetze.set((sitzplatzNr - 1), besetzt);
     }
 }
