@@ -2,10 +2,7 @@ package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DB {
 
@@ -40,39 +37,65 @@ public class DB {
         int n = ps.executeUpdate();
     }
 
-    public static void addColumn(Connection conn, Table table, String attributeName, DBType attributeType) throws SQLException {
-        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s", table, attributeName, attributeType.toString());
+    public static void addColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
+        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s", table, attribute, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void addArrayColumn(Connection conn, Table table, String attributeName, DBType attributeType) throws SQLException {
-        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s []", table, attributeName, attributeType.toString());
+    public static void addArrayColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
+        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s []", table, attribute, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void dropColumn(Connection conn, Table table, String attributeName) throws SQLException {
-        String sql = String.format("ALTER TABLE %s DROP COLUMN %s", table, attributeName);
+    public static void dropColumn(Connection conn, Table table, String attribute) throws SQLException {
+        String sql = String.format("ALTER TABLE %s DROP COLUMN IF EXISTS %s", table, attribute);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
+
 
     // Table functions
     // waiting to be changed.
-    public static void insertString(Connection conn, Table table, String attributeName, String string) throws SQLException {
+    public static int insertString(Connection conn, Table table, String attribute, String s) throws SQLException {
+        String sql = String.format("INSERT INTO %s (%s) VALUES ('%s')", table, attribute, s);
         try (PreparedStatement ps = conn.prepareStatement(
-                "INSERT INTO ? (?) VALUES (?)")) {
-            ps.setObject(1, table);
-            ps.setObject(2, attributeName);
-            ps.setObject(3, string);
-            int n = ps.executeUpdate(); // 1
+                sql, Statement.RETURN_GENERATED_KEYS)) {
+            int n = ps.executeUpdate();
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return -1;
+            }
         }
     }
 
-    // insert only once, then only update:
-    //UPDATE courses
-    //SET published_date = '2020-08-01'
-    //WHERE course_id = 3;
+    public static int insertInt(Connection conn, Table table, String attribute, int i) throws SQLException {
+        String sql = String.format("INSERT INTO %s (%s) VALUES (%s)", table, attribute, i);
+        try (PreparedStatement ps = conn.prepareStatement(
+                sql, Statement.RETURN_GENERATED_KEYS)) {
+            int n = ps.executeUpdate();
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return -1;
+            }
+        }
+    }
+
+    public static void updateString(Connection conn, Table table, String attribute, String s, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, s, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    public static void updateDouble(Connection conn, Table table, String attribute, Double d, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, d, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
 
 }
