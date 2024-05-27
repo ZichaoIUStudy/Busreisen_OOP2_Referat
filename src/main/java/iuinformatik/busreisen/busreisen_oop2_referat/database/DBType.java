@@ -5,7 +5,7 @@ public enum DBType {
     LongString("VARCHAR(255)"),
     Bool("BOOL"),
     Int("INT"),
-    Float("FLOAT"),
+    Double("NUMERIC"),
     Date("DATE"),
     Time("TIME"),
     TimeStamp("TIMESTAMP");

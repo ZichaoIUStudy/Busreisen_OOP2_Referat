@@ -10,7 +10,7 @@ public enum Table {
 
     private final String tableName;
 
-    public final class Busse {
+    public static final class Busse {
         public static final String Kennzeichen = "Kennzeichen";
         public static final String Zulassung = "Zulassung";
         public static final String TuevTermin = "TuevTermin";
@@ -19,14 +19,14 @@ public enum Table {
         public static final String Sitzplatz = "Sitzplatz";
     }
 
-    public final class Fahrer {
+    public static final class Fahrer {
         public static final String FahrerNr = "FahrerNr";
         public static final String Name = "Name";
         public static final String Vorname = "Vorname";
         public static final String FuehrerscheinKlasse = "FuehrerscheinKlasse";
     }
 
-    public final class Adressen {
+    public static final class Adressen {
         public static final String AdressId = "AdressId";
         public static final String Strasse = "Strasse";
         public static final String Hausnummer = "Hausnummer";
@@ -34,14 +34,14 @@ public enum Table {
         public static final String Ort = "Ort";
     }
 
-    public final class Passagiere {
+    public static final class Passagiere {
         public static final String PassagierNr = "PassagierNr";
         public static final String Name = "Name";
         public static final String Vorname = "Vorname";
         public static final String AdressId = "AdressId";
     }
 
-    public final class Busreisen {
+    public static final class Busreisen {
         public static final String ReiseNr = "ReiseNr";
         public static final String Fahrtbeginn = "Fahrtbeginn";
         public static final String Fahrtende = "Fahrtende";
@@ -51,8 +51,14 @@ public enum Table {
         public static final String KostenProPerson = "KostenProPerson";
     }
 
-    public final class Buchungen {
-
+    public static final class Buchungen {
+        public static final String BuchungsNr = "BuchungsNr";
+        public static final String PassagierNr = "PassagierNr";
+        public static final String PassagierPartnerNr = "PassagierPartnerNr";
+        public static final String Sitzplatz = "Sitzplatz";
+        public static final String PartnerSitzplatz = "PartnerSitzplatz";
+        public static final String Praeferenz = "Praeferenz";
+        //public static final String Sitzplatz = "BuchungsNr";
     }
 
     Table(String name) {

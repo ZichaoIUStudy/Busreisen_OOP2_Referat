@@ -12,7 +12,7 @@ public class Bus {
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
     private int anzahlSitzplaetze;
-    public List<Boolean> sitzplaetze = new ArrayList<>(anzahlSitzplaetze);
+    private List<Boolean> sitzplaetze = new ArrayList<>(anzahlSitzplaetze);
 
     public String getKennzeichen() {
         return kennzeichen;
