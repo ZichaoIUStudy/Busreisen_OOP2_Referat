@@ -45,10 +45,8 @@ public class Paarbuchung extends Buchung {
                     partnerSitzplatz = sitzplatz - 1;
                 }
 
-                if (partnerSitzplatz != -1 && (sitzplatz == 54 || sitzplatz == 56)) {
-                    if (!bus.getSitzplaetze().get(sitzplatz)) {
-                        partnerSitzplatz = sitzplatz + 1;
-                    }
+                if (partnerSitzplatz == -1 && (sitzplatz == 54 || sitzplatz == 56) && !bus.getSitzplaetze().get(sitzplatz)) {
+                    partnerSitzplatz = sitzplatz + 1;
                 }
 
             } else if (sitzplatz % 2 != 0 && sitzplatz > 5) {
@@ -61,10 +59,8 @@ public class Paarbuchung extends Buchung {
                         partnerSitzplatz = sitzplatz + 1;
                     }
 
-                    if (partnerSitzplatz != -1 && (sitzplatz == 55)) {
-                        if (!bus.getSitzplaetze().get(sitzplatz - 2)) {
-                            partnerSitzplatz = sitzplatz - 1;
-                        }
+                    if (partnerSitzplatz == -1 && (sitzplatz == 55) && !bus.getSitzplaetze().get(sitzplatz - 2)) {
+                        partnerSitzplatz = sitzplatz - 1;
                     }
                 }
             }
