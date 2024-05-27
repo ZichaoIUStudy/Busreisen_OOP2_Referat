@@ -41,13 +41,13 @@ public class DB {
     }
 
     public static void addColumn(Connection conn, Table table, String attributeName, DBType attributeType) throws SQLException {
-        String sql = String.format("ALTER TABLE %s ADD %s %s", table, attributeName, attributeType);
+        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s", table, attributeName, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     public static void addArrayColumn(Connection conn, Table table, String attributeName, DBType attributeType) throws SQLException {
-        String sql = String.format("ALTER TABLE %s ADD %s %s []", table, attributeName, attributeType);
+        String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s []", table, attributeName, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }

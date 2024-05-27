@@ -59,6 +59,7 @@ public class DBTable {
                 //DB.addColumn(conn, "Buchungen", "BuchungsNr", DBType.Int);
                 // Wait to be discussed
 
+                System.out.println("_________Successfully create table in the database__________");
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
@@ -67,7 +68,7 @@ public class DBTable {
                 conn.close();
             }
 
-            System.out.println("_________Successfully create table in the database__________");
+            System.out.println("_________Successfully operate in the database__________");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
