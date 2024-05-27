@@ -9,6 +9,7 @@ public class Buchung {
     private Passagier passagier;
     private int sitzplatz = -1;
     private Praeferenz praeferenz = Praeferenz.KEINE;
+    private boolean inklusiveHeizdecke;
 
     public int getBuchungsNr() {
         return buchungsNr;
@@ -44,5 +45,13 @@ public class Buchung {
 
     public void setPraeferenz(Praeferenz praeferenz) {
         this.praeferenz = praeferenz;
+    }
+
+    public boolean isInklusiveHeizdecke() {
+        return inklusiveHeizdecke;
+    }
+
+    public void setInklusiveHeizdecke(boolean inklusive) {
+        this.inklusiveHeizdecke = inklusive;
     }
 }
