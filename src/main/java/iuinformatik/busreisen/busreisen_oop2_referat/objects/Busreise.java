@@ -1,6 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Busreise {
 

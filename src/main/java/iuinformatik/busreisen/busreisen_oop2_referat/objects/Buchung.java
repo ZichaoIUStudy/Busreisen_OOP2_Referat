@@ -5,12 +5,22 @@ import iuinformatik.busreisen.busreisen_oop2_referat.enums.Praeferenz;
 public class Buchung {
 
     private int buchungsNr;
+    private Busreise busreise;
     private Passagier passagier;
     private int sitzplatz = -1;
     private Praeferenz praeferenz = Praeferenz.KEINE;
+    private boolean inklusiveHeizdecke;
 
     public int getBuchungsNr() {
         return buchungsNr;
+    }
+
+    public Busreise getBusreise() {
+        return busreise;
+    }
+
+    public void setBusreise(Busreise busreise) {
+        this.busreise = busreise;
     }
 
     public Passagier getPassagier() {
@@ -35,5 +45,13 @@ public class Buchung {
 
     public void setPraeferenz(Praeferenz praeferenz) {
         this.praeferenz = praeferenz;
+    }
+
+    public boolean isInklusiveHeizdecke() {
+        return inklusiveHeizdecke;
+    }
+
+    public void setInklusiveHeizdecke(boolean inklusive) {
+        this.inklusiveHeizdecke = inklusive;
     }
 }
