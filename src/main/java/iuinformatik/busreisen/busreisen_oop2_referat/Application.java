@@ -1,6 +1,8 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.DBType;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBTable;
 import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,18 +23,14 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view.fxml"));
 
         VBox menu = new VBox();
-        Label description = new Label("Type the name of new table: ");
-        TextField createInput = new TextField();
-        createInput.setMaxWidth(100);
+        //Label description = new Label("Type the name of new table: ");
 
-        Button submit = new Button("Add New Table");
-        submit.setOnMouseClicked(mouseEvent -> {
-            Table name = Table.valueOf(createInput.getText());
+        Button create_default_table = new Button("create default Table");
+        create_default_table.setOnMouseClicked(mouseEvent -> {
             try (var conn =  DB.connect()){
-                System.out.println("_________Connected to the PostgreSQL database__________");
                 try {
                     conn.setAutoCommit(false);
-                    DB.create(conn, name);
+                    DBTable.BuildBase();
                     conn.commit();
                 } catch (SQLException e) {
                     conn.rollback();
@@ -40,8 +38,6 @@ public class Application extends javafx.application.Application {
                     conn.setAutoCommit(true);
                     conn.close();
                 }
-
-                System.out.println("_________Successfully create table in the database__________");
             } catch (SQLException e) {
                 System.err.println(e.getMessage());
             }
@@ -70,7 +66,7 @@ public class Application extends javafx.application.Application {
                 System.err.println(e.getMessage());
             }
         });
-        menu.getChildren().addAll(description, createInput, submit, dropInput, drop);
+        menu.getChildren().addAll(create_default_table, dropInput, drop);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menu);

@@ -15,4 +15,8 @@ public enum DBType {
     DBType(String type) {
         this.dbType = type;
     }
+
+    public String toString() {
+        return this.dbType;
+    }
 }
