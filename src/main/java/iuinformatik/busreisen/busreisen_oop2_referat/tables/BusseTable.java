@@ -20,46 +20,46 @@ public class BusseTable {
     }
 
     public void createDefaultBusse() {
-        Bus VW_T6_01 = new Bus();
-        setBusTypeEins(VW_T6_01);
-        VW_T6_01.setKennzeichen("L-EK 6789");
-        VW_T6_01.setZulassung(Date.valueOf("2021-03-01"));
-        VW_T6_01.setTuevTermin(Date.valueOf("2025-03-01"));
-        VW_T6_01.setGefahreneKilometer(124.446);
+        Bus VW_01 = new Bus();
+        setBusTypeEins(VW_01);
+        VW_01.setKennzeichen("L-EK 6789");
+        VW_01.setZulassung(Date.valueOf("2021-03-01"));
+        VW_01.setTuevTermin(Date.valueOf("2025-03-01"));
+        VW_01.setGefahreneKilometer(124.446);
 
-        Bus VW_T6_02 = new Bus();
-        setBusTypeEins(VW_T6_02);
-        VW_T6_02.setKennzeichen("L-FR 1011");
-        VW_T6_02.setZulassung(Date.valueOf("2021-03-01"));
-        VW_T6_02.setTuevTermin(Date.valueOf("2025-03-01"));
-        VW_T6_02.setGefahreneKilometer(102.759);
+        Bus VW_02 = new Bus();
+        setBusTypeEins(VW_02);
+        VW_02.setKennzeichen("L-FR 1011");
+        VW_02.setZulassung(Date.valueOf("2021-03-01"));
+        VW_02.setTuevTermin(Date.valueOf("2025-03-01"));
+        VW_02.setGefahreneKilometer(102.759);
 
-        Bus cityliner01 = new Bus();
-        setBusTypeZwei(cityliner01);
-        cityliner01.setKennzeichen("L-AF 1234");
-        cityliner01.setZulassung(Date.valueOf("2015-05-01"));
-        cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner01.setGefahreneKilometer(862.345);
+        Bus Cityliner01 = new Bus();
+        setBusTypeZwei(Cityliner01);
+        Cityliner01.setKennzeichen("L-AF 1234");
+        Cityliner01.setZulassung(Date.valueOf("2015-05-01"));
+        Cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
+        Cityliner01.setGefahreneKilometer(862.345);
 
-        Bus cityliner02 = new Bus();
-        setBusTypeZwei(cityliner02);
-        cityliner02.setKennzeichen("L-BX 5678");
-        cityliner02.setZulassung(Date.valueOf("2015-05-01"));
-        cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner02.setGefahreneKilometer(789.456);
+        Bus Cityliner02 = new Bus();
+        setBusTypeZwei(Cityliner02);
+        Cityliner02.setKennzeichen("L-BX 5678");
+        Cityliner02.setZulassung(Date.valueOf("2015-05-01"));
+        Cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
+        Cityliner02.setGefahreneKilometer(789.456);
 
-        Bus cityliner03 = new Bus();
-        setBusTypeZwei(cityliner03);
-        cityliner03.setKennzeichen("L-CG 9101");
-        cityliner03.setZulassung(Date.valueOf("2016-07-01"));
-        cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner03.setGefahreneKilometer(678.901);
+        Bus Cityliner03 = new Bus();
+        setBusTypeZwei(Cityliner03);
+        Cityliner03.setKennzeichen("L-CG 9101");
+        Cityliner03.setZulassung(Date.valueOf("2016-07-01"));
+        Cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
+        Cityliner03.setGefahreneKilometer(678.901);
 
-        Bus cityliner04 = new Bus();
-        setBusTypeZwei(cityliner04);
-        cityliner04.setKennzeichen("L-DH 2345");
-        cityliner04.setZulassung(Date.valueOf("2016-07-01"));
-        cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner04.setGefahreneKilometer(696.332);
+        Bus Cityliner04 = new Bus();
+        setBusTypeZwei(Cityliner04);
+        Cityliner04.setKennzeichen("L-DH 2345");
+        Cityliner04.setZulassung(Date.valueOf("2016-07-01"));
+        Cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
+        Cityliner04.setGefahreneKilometer(696.332);
     }
 }
