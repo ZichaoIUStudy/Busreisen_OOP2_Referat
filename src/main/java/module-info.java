@@ -6,6 +6,7 @@ module iuinformatik.busreisen.busreisen_oop2_referat {
     requires spring.beans;
     requires spring.jdbc;
     requires java.sql;
+    requires org.yaml.snakeyaml;
 
     opens iuinformatik.busreisen.busreisen_oop2_referat to javafx.fxml;
     exports iuinformatik.busreisen.busreisen_oop2_referat;

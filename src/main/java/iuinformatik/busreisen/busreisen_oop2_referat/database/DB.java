@@ -3,6 +3,7 @@ package iuinformatik.busreisen.busreisen_oop2_referat.database;
 import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class DB {
 
@@ -55,9 +56,7 @@ public class DB {
         int n = ps.executeUpdate();
     }
 
-
-    // Table functions
-    // waiting to be changed.
+    // insert functions
     public static int insertString(Connection conn, Table table, String attribute, String s) throws SQLException {
         String sql = String.format("INSERT INTO %s (%s) VALUES ('%s')", table, attribute, s);
         try (PreparedStatement ps = conn.prepareStatement(
@@ -86,8 +85,15 @@ public class DB {
         }
     }
 
+    // update functions
     public static void updateString(Connection conn, Table table, String attribute, String s, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, s, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    public static void updateInt(Connection conn, Table table, String attribute, int i, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, i, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
@@ -96,6 +102,115 @@ public class DB {
         String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, d, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
+    }
+
+    public static void updateDate(Connection conn, Table table, String attribute, Date date, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, date, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    public static void updateTimStamp(Connection conn, Table table, String attribute, Timestamp timeStamp, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, timeStamp, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    public static void updateBoolArray(Connection conn, Table table, String attribute, boolean[] boolArray, int id) throws SQLException {
+        String sqlArray = "{" + Arrays.toString(boolArray).substring(1, Arrays.toString(boolArray).length()-1) + "}";
+        String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, sqlArray, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    // delete function (delete possible only with id)
+    public static void delete(Connection conn, Table table, int id) throws SQLException {
+        String sql = String.format("DELETE FROM %s WHERE id = %s", table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
+    // select functions
+    public static String selectString(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getString(attribute);
+        }
+        return "Error";
+    }
+
+    public static int selectInt(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getInt(attribute);
+        }
+        return -1;
+    }
+
+    public static double selectDouble(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getDouble(attribute);
+        }
+        return -1;
+    }
+
+    public static Date selectDate(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getDate(attribute);
+        }
+        return Date.valueOf("0000-00-00");
+    }
+
+    public static Timestamp selectTimStamp(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getTimestamp(attribute);
+        }
+        return Timestamp.valueOf("0000-00-00");
+    }
+
+    public static boolean[] selectBoolArray(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Array sqlArray = rs.getArray(attribute);
+            return convertToPrimitive((Boolean[]) sqlArray.getArray());
+        }
+        return new boolean[]{false};
+    }
+
+    // Boolean[] to boolean[]
+    public static boolean[] convertToPrimitive(Boolean[] booleanObjects) {
+        // Check if the input array is null
+        if (booleanObjects == null) {
+            return null;
+        }
+
+        // Create a new boolean[] array with the same length as the input array
+        boolean[] booleanPrimitives = new boolean[booleanObjects.length];
+
+        // Iterate through the Boolean[] array
+        for (int i = 0; i < booleanObjects.length; i++) {
+            // Unbox each Boolean object to its boolean primitive value
+            // If the Boolean object is null, you can decide how to handle it
+            // Here, we assume null should be converted to false
+            booleanPrimitives[i] = booleanObjects[i] != null ? booleanObjects[i] : false;
+        }
+
+        return booleanPrimitives;
     }
 
 }

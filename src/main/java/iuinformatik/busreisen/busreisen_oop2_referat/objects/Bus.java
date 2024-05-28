@@ -4,6 +4,7 @@ import iuinformatik.busreisen.busreisen_oop2_referat.Colors;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 
 import java.util.*;
+import java.sql.Date;
 
 public class Bus {
 

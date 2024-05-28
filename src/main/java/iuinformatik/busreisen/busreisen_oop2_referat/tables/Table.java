@@ -16,7 +16,7 @@ public enum Table {
         public static final String TuevTermin = "TuevTermin";
         public static final String GefahreneKilo = "GefahreneKilo";
         public static final String KostenProKilo = "KostenProKilo";
-        public static final String Sitzplatz = "Sitzplatz";
+        public static final String Sitzplaetze = "Sitzplaetze";
     }
 
     public static final class Fahrer {
@@ -58,7 +58,7 @@ public enum Table {
         public static final String Sitzplatz = "Sitzplatz";
         public static final String PartnerSitzplatz = "PartnerSitzplatz";
         public static final String Praeferenz = "Praeferenz";
-        //public static final String Sitzplatz = "BuchungsNr";
+        public static final String ReiseNr = "ReiseNr";
     }
 
     Table(String name) {

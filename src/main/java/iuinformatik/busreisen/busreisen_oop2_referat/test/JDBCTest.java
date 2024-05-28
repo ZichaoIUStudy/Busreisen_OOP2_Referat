@@ -4,26 +4,22 @@ import iuinformatik.busreisen.busreisen_oop2_referat.database.*;
 import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class JDBCTest {
-    public static void main(String[] args){
-        try (var conn =  DB.connect()){
-            System.out.println("_________Connected to the PostgreSQL database__________");
-            try {
-                conn.setAutoCommit(false);
-                DB.addColumn(conn, Table.BUSSE, Table.Busse.Kennzeichen, DBType.String);
-                //conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-                conn.close();
-            }
+    public static void main(String[] args) throws SQLException {
 
-            System.out.println("_________Successfully create table in the database__________");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
+        boolean[] sitzplaetze = new boolean[9];
+        Arrays.fill(sitzplaetze,false);
+
+        String sqlArray = "{" + Arrays.toString(sitzplaetze).substring(1, Arrays.toString(sitzplaetze).length()-1) + "}";
+        String sql = String.format("UPDATE 1 SET 2 = '%s' WHERE id = 3", sqlArray);
+        System.out.println(Date.valueOf("0000-00-00"));
+
     }
 
 
