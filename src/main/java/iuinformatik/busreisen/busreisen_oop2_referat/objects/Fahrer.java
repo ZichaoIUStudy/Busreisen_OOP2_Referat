@@ -13,6 +13,10 @@ public class Fahrer {
         return fahrerNr;
     }
 
+    public void setFahrerNr(int fahrerNr) {
+        this.fahrerNr = fahrerNr;
+    }
+
     public String getName() {
         return name;
     }

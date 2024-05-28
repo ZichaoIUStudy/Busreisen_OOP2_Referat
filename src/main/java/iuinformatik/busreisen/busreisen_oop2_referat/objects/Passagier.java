@@ -11,6 +11,10 @@ public class Passagier {
         return passagierNr;
     }
 
+    public void setPassagierNr(int passagierNr) {
+        this.passagierNr = passagierNr;
+    }
+
     public String getName() {
         return name;
     }

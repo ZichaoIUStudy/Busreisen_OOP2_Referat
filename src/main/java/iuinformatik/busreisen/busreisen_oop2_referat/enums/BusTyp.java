@@ -1,8 +1,8 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.enums;
 
 public enum BusTyp {
-    Kleinbus(1, 9),
-    Reisebus(2, 57);
+    KLEINBUS(1, 9),
+    REISEBUS(2, 57);
 
     private final int id;
     private final int anzahlSitzplaetze;
@@ -21,6 +21,6 @@ public enum BusTyp {
     }
 
     public static BusTyp getBusTypById(int id) {
-        return (id == 2) ? Reisebus : Kleinbus;
+        return (id == 2) ? REISEBUS : KLEINBUS;
     }
 }

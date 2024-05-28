@@ -9,13 +9,13 @@ public class BusseTable {
 
     // VW 9-Sitzer-Busse
     public void setBusTypeEins(Bus bus) {
-        bus.setBusTyp(BusTyp.Kleinbus);
+        bus.setBusTyp(BusTyp.KLEINBUS);
         bus.setKostenProKilometer(0.5);
     }
 
     // Cityliner
     public void setBusTypeZwei(Bus bus) {
-        bus.setBusTyp(BusTyp.Reisebus);
+        bus.setBusTyp(BusTyp.REISEBUS);
         bus.setKostenProKilometer(1.2);
     }
 

@@ -15,6 +15,10 @@ public class Buchung {
         return buchungsNr;
     }
 
+    public void setBuchungsNr(int buchungsNr) {
+        this.buchungsNr = buchungsNr;
+    }
+
     public Busreise getBusreise() {
         return busreise;
     }
