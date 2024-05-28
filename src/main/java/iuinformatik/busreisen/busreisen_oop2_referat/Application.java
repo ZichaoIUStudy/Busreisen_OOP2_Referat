@@ -1,13 +1,11 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.DBType;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBTable;
-import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;

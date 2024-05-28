@@ -1,4 +1,4 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Adresse;
 

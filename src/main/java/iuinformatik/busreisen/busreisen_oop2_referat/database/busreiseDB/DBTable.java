@@ -4,7 +4,7 @@ import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DBType;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Bus;
-import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
 
 import java.sql.Connection;
 import java.sql.Date;

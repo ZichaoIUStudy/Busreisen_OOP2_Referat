@@ -1,14 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.test;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.database.*;
-import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
-
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class JDBCTest {
     public static void main(String[] args) throws SQLException {

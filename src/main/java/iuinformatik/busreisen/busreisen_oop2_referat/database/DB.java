@@ -1,6 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.tables.Table;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
 
 import java.sql.*;
 import java.util.Arrays;
