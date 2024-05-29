@@ -67,11 +67,9 @@ public class BusseTable {
         Cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
         Cityliner04.setGefahreneKilometer(696.332);
 
-        DBFunktionen.InitBus(conn, VW_01);
-        DBFunktionen.InitBus(conn, VW_02);
-        DBFunktionen.InitBus(conn, Cityliner01);
-        DBFunktionen.InitBus(conn, Cityliner02);
-        DBFunktionen.InitBus(conn, Cityliner03);
-        DBFunktionen.InitBus(conn, Cityliner04);
+        // check if the bus with this Kennzeichen already exists in DB, if not then initialize it
+        if (!DBFunktionen.getBus(conn, VW_01.getKennzeichen()).getKennzeichen().equals(VW_01.getKennzeichen()))
+            DBFunktionen.initBus(conn, VW_01);
+
     }
 }

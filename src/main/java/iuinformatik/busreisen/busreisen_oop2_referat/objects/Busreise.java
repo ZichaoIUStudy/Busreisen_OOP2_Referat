@@ -1,7 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.Colors;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
+import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleFunktionen;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 
 import java.sql.Timestamp;
@@ -25,8 +25,9 @@ public class Busreise {
         return reiseNr;
     }
 
+    // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
     public void setReiseNr(int reiseNr) {
-        this.reiseNr = reiseNr;
+        this.reiseNr = this.reiseNr == 0 ? reiseNr : this.reiseNr;
     }
 
     public Timestamp getFahrtbeginn() {
@@ -83,7 +84,7 @@ public class Busreise {
     }
 
     public void setSitzplaetze(boolean[] sitzplaetze) {
-        Boolean[] array = DB.convertToBoolean(sitzplaetze);
+        Boolean[] array = GlobaleFunktionen.convertToBoolean(sitzplaetze);
         this.sitzplaetze = Arrays.asList(array);
     }
 

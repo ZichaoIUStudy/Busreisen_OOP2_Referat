@@ -13,8 +13,9 @@ public class Fahrer {
         return fahrerNr;
     }
 
+    // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
     public void setFahrerNr(int fahrerNr) {
-        this.fahrerNr = fahrerNr;
+        this.fahrerNr = this.fahrerNr == 0 ? fahrerNr : this.fahrerNr;
     }
 
     public String getName() {

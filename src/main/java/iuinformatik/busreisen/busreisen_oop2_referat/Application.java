@@ -1,8 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBFunktionen;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class Application extends javafx.application.Application {
 
@@ -26,7 +23,7 @@ public class Application extends javafx.application.Application {
         Button create_default_table = new Button("create default table");
         create_default_table.setOnMouseClicked(mouseEvent -> {
 
-            DBFunktionen.BuildTableBase();
+            DBFunktionen.buildTableBase();
 
         });
 
@@ -34,15 +31,7 @@ public class Application extends javafx.application.Application {
         Button init_data = new Button("init data");
         init_data.setOnMouseClicked(mouseEvent -> {
 
-            DBFunktionen.InsertDefaultData();
-
-        });
-
-
-        Button show_sitzplaetze = new Button("show seats");
-        show_sitzplaetze.setOnMouseClicked(mouseEvent -> {
-
-            DBFunktionen.SelectData();
+            DBFunktionen.insertDefaultData();
 
         });
 
@@ -53,7 +42,7 @@ public class Application extends javafx.application.Application {
         Button drop = new Button("Drop Table");
 
 
-        menu.getChildren().addAll(create_default_table, init_data, show_sitzplaetze,
+        menu.getChildren().addAll(create_default_table, init_data,
                 dropInput, drop);
 
         BorderPane borderPane = new BorderPane();

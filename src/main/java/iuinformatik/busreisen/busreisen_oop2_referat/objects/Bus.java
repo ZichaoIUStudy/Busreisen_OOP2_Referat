@@ -18,8 +18,9 @@ public class Bus {
         return kennzeichen;
     }
 
+    // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
     public void setKennzeichen(String kennzeichen) {
-        this.kennzeichen = kennzeichen;
+        this.kennzeichen = this.kennzeichen == null ? kennzeichen : this.kennzeichen;
     }
 
     public BusTyp getBusTyp() {

@@ -15,8 +15,9 @@ public class Buchung {
         return buchungsNr;
     }
 
+    // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
     public void setBuchungsNr(int buchungsNr) {
-        this.buchungsNr = buchungsNr;
+        this.buchungsNr = this.buchungsNr == 0 ? buchungsNr : this.buchungsNr;
     }
 
     public Busreise getBusreise() {

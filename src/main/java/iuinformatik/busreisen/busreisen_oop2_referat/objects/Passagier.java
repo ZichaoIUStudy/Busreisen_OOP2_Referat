@@ -11,8 +11,9 @@ public class Passagier {
         return passagierNr;
     }
 
+    // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
     public void setPassagierNr(int passagierNr) {
-        this.passagierNr = passagierNr;
+        this.passagierNr = this.passagierNr == 0 ? passagierNr : this.passagierNr;
     }
 
     public String getName() {
