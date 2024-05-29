@@ -116,6 +116,12 @@ public class DB {
         int n = ps.executeUpdate();
     }
 
+    public static void updateBool(Connection conn, Table table, String attribute, boolean bool, int id) throws SQLException {
+        String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, bool, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        int n = ps.executeUpdate();
+    }
+
     public static void updateBoolArray(Connection conn, Table table, String attribute, boolean[] boolArray, int id) throws SQLException {
         String sqlArray = "{" + Arrays.toString(boolArray).substring(1, Arrays.toString(boolArray).length()-1) + "}";
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, sqlArray, id);
@@ -168,7 +174,7 @@ public class DB {
         while (rs.next()) {
             return rs.getDate(attribute);
         }
-        return Date.valueOf("0000-00-00");
+        return Date.valueOf("1111-11-11");
     }
 
     public static Timestamp selectTimStamp(Connection conn, Table table, String attribute, int id) throws SQLException {
@@ -178,7 +184,17 @@ public class DB {
         while (rs.next()) {
             return rs.getTimestamp(attribute);
         }
-        return Timestamp.valueOf("0000-00-00");
+        return Timestamp.valueOf("1111-11-11 0:0:0");
+    }
+
+    public static boolean selectBool(Connection conn, Table table, String attribute, int id) throws SQLException {
+        String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getBoolean(attribute);
+        }
+        return false;
     }
 
     public static boolean[] selectBoolArray(Connection conn, Table table, String attribute, int id) throws SQLException {
@@ -190,6 +206,27 @@ public class DB {
             return convertToPrimitive((Boolean[]) sqlArray.getArray());
         }
         return new boolean[]{false};
+    }
+
+    // select id funtions
+    public static int selectIdPerInt(Connection conn, Table table, String searchAttribute, int i) throws SQLException {
+        String sql = String.format("SELECT id FROM %s WHERE %s = %s", table, searchAttribute, i);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getInt("id");
+        }
+        return -1;
+    }
+
+    public static int selectIdPerString(Connection conn, Table table, String searchAttribute, String s) throws SQLException {
+        String sql = String.format("SELECT id FROM %s WHERE %s = '%s'", table, searchAttribute, s);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            return rs.getInt("id");
+        }
+        return -1;
     }
 
     // Boolean[] to boolean[]
@@ -213,4 +250,22 @@ public class DB {
         return booleanPrimitives;
     }
 
+    // boolean[] to Boolean[]
+    public static Boolean[] convertToBoolean(boolean[] booleanPrimitives) {
+        // Check if the input array is null
+        if (booleanPrimitives == null) {
+            return null;
+        }
+
+        // Create a new Boolean[] array with the same length as the input array
+        Boolean[] booleanObjects = new Boolean[booleanPrimitives.length];
+
+        // Iterate through the boolean[] array
+        for (int i = 0; i < booleanPrimitives.length; i++) {
+            // Box each boolean primitive value to its Boolean object
+            booleanObjects[i] = booleanPrimitives[i];
+        }
+
+        return booleanObjects;
+    }
 }

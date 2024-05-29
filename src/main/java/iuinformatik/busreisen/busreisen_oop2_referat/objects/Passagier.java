@@ -38,4 +38,5 @@ public class Passagier {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
+
 }

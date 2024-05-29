@@ -1,7 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBTable;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBFunktionen;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,54 +23,44 @@ public class Application extends javafx.application.Application {
         VBox menu = new VBox();
         //Label description = new Label("Type the name of new table: ");
 
-        Button create_default_table = new Button("create default Table");
+        Button create_default_table = new Button("create default table");
         create_default_table.setOnMouseClicked(mouseEvent -> {
-            try (var conn =  DB.connect()){
-                try {
-                    conn.setAutoCommit(false);
-                    DBTable.BuildBase();
-                    conn.commit();
-                } catch (SQLException e) {
-                    conn.rollback();
-                } finally {
-                    conn.setAutoCommit(true);
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
+
+            DBFunktionen.BuildTableBase();
+
         });
+
+
+        Button init_data = new Button("init data");
+        init_data.setOnMouseClicked(mouseEvent -> {
+
+            DBFunktionen.InsertDefaultData();
+
+        });
+
+
+        Button show_sitzplaetze = new Button("show seats");
+        show_sitzplaetze.setOnMouseClicked(mouseEvent -> {
+
+            DBFunktionen.SelectData();
+
+        });
+
 
         TextField dropInput = new TextField();
         dropInput.setMaxWidth(100);
 
         Button drop = new Button("Drop Table");
-        drop.setOnMouseClicked(mouseEvent -> {
-            Table name = Table.valueOf(dropInput.getText());
-            try (var conn =  DB.connect()){
-                System.out.println("_________Connected to the PostgreSQL database__________");
-                try {
-                    conn.setAutoCommit(false);
-                    DB.drop(conn, name);
-                    conn.commit();
-                } catch (SQLException e) {
-                    conn.rollback();
-                } finally {
-                    conn.setAutoCommit(true);
-                    conn.close();
-                }
-                System.out.println("_________Successfully drop table in the database__________");
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        });
-        menu.getChildren().addAll(create_default_table, dropInput, drop);
+
+
+        menu.getChildren().addAll(create_default_table, init_data, show_sitzplaetze,
+                dropInput, drop);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menu);
 
-        Scene scene = new Scene(borderPane, 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(borderPane, 640, 320);
+        stage.setTitle("Busreisen System");
         stage.setScene(scene);
         stage.show();
     }

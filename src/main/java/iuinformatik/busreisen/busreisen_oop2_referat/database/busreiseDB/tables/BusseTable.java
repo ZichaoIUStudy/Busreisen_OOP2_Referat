@@ -1,25 +1,30 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables;
 
+import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBFunktionen;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Bus;
+import iuinformatik.busreisen.busreisen_oop2_referat.objects.Busreise;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 
 public class BusseTable {
 
     // VW 9-Sitzer-Busse
-    public void setBusTypeEins(Bus bus) {
+    public static void setBusTypeEins(Bus bus) {
         bus.setBusTyp(BusTyp.KLEINBUS);
         bus.setKostenProKilometer(0.5);
     }
 
     // Cityliner
-    public void setBusTypeZwei(Bus bus) {
+    public static void setBusTypeZwei(Bus bus) {
         bus.setBusTyp(BusTyp.REISEBUS);
         bus.setKostenProKilometer(1.2);
     }
 
-    public void createDefaultBusse() {
+    public static void createDefaultBusse(Connection conn) throws SQLException {
         Bus VW_01 = new Bus();
         setBusTypeEins(VW_01);
         VW_01.setKennzeichen("L-EK 6789");
@@ -61,5 +66,12 @@ public class BusseTable {
         Cityliner04.setZulassung(Date.valueOf("2016-07-01"));
         Cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
         Cityliner04.setGefahreneKilometer(696.332);
+
+        DBFunktionen.InitBus(conn, VW_01);
+        DBFunktionen.InitBus(conn, VW_02);
+        DBFunktionen.InitBus(conn, Cityliner01);
+        DBFunktionen.InitBus(conn, Cityliner02);
+        DBFunktionen.InitBus(conn, Cityliner03);
+        DBFunktionen.InitBus(conn, Cityliner04);
     }
 }

@@ -1,10 +1,12 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.Colors;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -78,6 +80,11 @@ public class Busreise {
 
     public List<Boolean> getSitzplaetze() {
         return sitzplaetze;
+    }
+
+    public void setSitzplaetze(boolean[] sitzplaetze) {
+        Boolean[] array = DB.convertToBoolean(sitzplaetze);
+        this.sitzplaetze = Arrays.asList(array);
     }
 
     public void setSitzplatzBesetzt(int sitzplatzNr, Boolean besetzt) {

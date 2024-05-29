@@ -16,7 +16,7 @@ public enum Table {
         public static final String TuevTermin = "TuevTermin";
         public static final String GefahreneKilo = "GefahreneKilo";
         public static final String KostenProKilo = "KostenProKilo";
-        public static final String Sitzplaetze = "Sitzplaetze";
+        public static final String BusTypNr = "BusTyp";
     }
 
     public static final class Fahrer {
@@ -27,7 +27,7 @@ public enum Table {
     }
 
     public static final class Adressen {
-        public static final String AdressId = "AdressId";
+        public static final String AdresseId = "AdresseId";
         public static final String Strasse = "Strasse";
         public static final String Hausnummer = "Hausnummer";
         public static final String PLZ = "PLZ";
@@ -47,18 +47,18 @@ public enum Table {
         public static final String Fahrtende = "Fahrtende";
         public static final String FahrerNr = "FahrerNr";
         public static final String BusKennzeichen = "BusKennzeichen";
-        public static final String AdressId = "AdressId";
+        public static final String AdresseId = "AdresseId";
         public static final String KostenProPerson = "KostenProPerson";
+        public static final String Sitzplaetze = "Sitzplaetze";
     }
 
     public static final class Buchungen {
         public static final String BuchungsNr = "BuchungsNr";
         public static final String PassagierNr = "PassagierNr";
-        public static final String PassagierPartnerNr = "PassagierPartnerNr";
         public static final String Sitzplatz = "Sitzplatz";
-        public static final String PartnerSitzplatz = "PartnerSitzplatz";
         public static final String Praeferenz = "Praeferenz";
         public static final String ReiseNr = "ReiseNr";
+        public static final String Heizdecke = "InklusiveHeizdecke";
     }
 
     Table(String name) {

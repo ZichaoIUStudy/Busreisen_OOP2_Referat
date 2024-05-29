@@ -11,7 +11,7 @@ public class JDBCTest {
 
         String sqlArray = "{" + Arrays.toString(sitzplaetze).substring(1, Arrays.toString(sitzplaetze).length()-1) + "}";
         String sql = String.format("UPDATE 1 SET 2 = '%s' WHERE id = 3", sqlArray);
-        System.out.println(Date.valueOf("0000-00-00"));
+        System.out.println(Timestamp.valueOf("1111-11-11 0:0:0"));
 
     }
 

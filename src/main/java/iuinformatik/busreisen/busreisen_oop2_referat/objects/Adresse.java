@@ -2,18 +2,18 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 public class Adresse {
 
-    private int adressId;
+    private int adresseId;
     private String strasse;
-    private int hausnummer;
+    private String hausnummer;
     private String plz;
     private String ort;
 
-    public int getAdressId() {
-        return adressId;
+    public int getAdresseId() {
+        return adresseId;
     }
 
-    public void setAdressId(int adressId) {
-        this.adressId = adressId;
+    public void setAdresseId(int adressId) {
+        this.adresseId = adressId;
     }
 
     public String getStrasse() {
@@ -24,11 +24,11 @@ public class Adresse {
         this.strasse = strasse;
     }
 
-    public int getHausnummer() {
+    public String getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer(int hausnummer) {
+    public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
 
@@ -47,4 +47,5 @@ public class Adresse {
     public void setOrt(String ort) {
         this.ort = ort;
     }
+
 }

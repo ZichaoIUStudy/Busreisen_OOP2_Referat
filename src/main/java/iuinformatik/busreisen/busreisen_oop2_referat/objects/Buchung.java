@@ -5,10 +5,10 @@ import iuinformatik.busreisen.busreisen_oop2_referat.enums.Praeferenz;
 public class Buchung {
 
     private int buchungsNr;
-    private Busreise busreise;
     private Passagier passagier;
     private int sitzplatz = -1;
     private Praeferenz praeferenz = Praeferenz.KEINE;
+    private Busreise busreise;
     private boolean inklusiveHeizdecke;
 
     public int getBuchungsNr() {
