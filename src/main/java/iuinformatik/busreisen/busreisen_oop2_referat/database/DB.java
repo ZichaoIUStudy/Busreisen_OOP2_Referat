@@ -1,11 +1,12 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleFunktionen;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
+import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleMethoden;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 
 import java.sql.*;
 import java.util.Arrays;
 
+// Alle Methoden ausser connect sind protected
 public class DB {
 
     // Connection
@@ -13,9 +14,9 @@ public class DB {
 
         try {
             // Get database credentials from DatabaseConfig class
-            var jdbcUrl = DatabaseConfig.getDbUrl();
-            var user = DatabaseConfig.getDbUsername();
-            var password = DatabaseConfig.getDbPassword();
+            var jdbcUrl = DBConfig.getDbUrl();
+            var user = DBConfig.getDbUsername();
+            var password = DBConfig.getDbPassword();
 
             // Open a connection
             return DriverManager.getConnection(jdbcUrl, user, password);
@@ -27,38 +28,38 @@ public class DB {
     }
 
     // Table operations
-    public static void drop(Connection conn, Table table) throws SQLException {
+    protected static void drop(Connection conn, Table table) throws SQLException {
         String sql = "DROP TABLE IF EXISTS " + table;
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void create(Connection conn, Table table) throws SQLException {
+    protected static void create(Connection conn, Table table) throws SQLException {
         String sql = String.format("CREATE TABLE IF NOT EXISTS %s (id SERIAL PRIMARY KEY)", table);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void addColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
+    protected static void addColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
         String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s", table, attribute, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void addArrayColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
+    protected static void addArrayColumn(Connection conn, Table table, String attribute, DBType attributeType) throws SQLException {
         String sql = String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s []", table, attribute, attributeType.toString());
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void dropColumn(Connection conn, Table table, String attribute) throws SQLException {
+    protected static void dropColumn(Connection conn, Table table, String attribute) throws SQLException {
         String sql = String.format("ALTER TABLE %s DROP COLUMN IF EXISTS %s", table, attribute);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     // insert functions
-    public static int insertString(Connection conn, Table table, String attribute, String s) throws SQLException {
+    protected static int insertString(Connection conn, Table table, String attribute, String s) throws SQLException {
         String sql = String.format("INSERT INTO %s (%s) VALUES ('%s')", table, attribute, s);
         try (PreparedStatement ps = conn.prepareStatement(
                 sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -72,7 +73,7 @@ public class DB {
         }
     }
 
-    public static int insertInt(Connection conn, Table table, String attribute, int i) throws SQLException {
+    protected static int insertInt(Connection conn, Table table, String attribute, int i) throws SQLException {
         String sql = String.format("INSERT INTO %s (%s) VALUES (%s)", table, attribute, i);
         try (PreparedStatement ps = conn.prepareStatement(
                 sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -87,43 +88,43 @@ public class DB {
     }
 
     // update functions
-    public static void updateString(Connection conn, Table table, String attribute, String s, int id) throws SQLException {
+    protected static void updateString(Connection conn, Table table, String attribute, String s, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, s, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateInt(Connection conn, Table table, String attribute, int i, int id) throws SQLException {
+    protected static void updateInt(Connection conn, Table table, String attribute, int i, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, i, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateDouble(Connection conn, Table table, String attribute, Double d, int id) throws SQLException {
+    protected static void updateDouble(Connection conn, Table table, String attribute, Double d, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, d, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateDate(Connection conn, Table table, String attribute, Date date, int id) throws SQLException {
+    protected static void updateDate(Connection conn, Table table, String attribute, Date date, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, date, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateTimStamp(Connection conn, Table table, String attribute, Timestamp timeStamp, int id) throws SQLException {
+    protected static void updateTimStamp(Connection conn, Table table, String attribute, Timestamp timeStamp, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, timeStamp, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateBool(Connection conn, Table table, String attribute, boolean bool, int id) throws SQLException {
+    protected static void updateBool(Connection conn, Table table, String attribute, boolean bool, int id) throws SQLException {
         String sql = String.format("UPDATE %s SET %s = %s WHERE id = %s", table, attribute, bool, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
-    public static void updateBoolArray(Connection conn, Table table, String attribute, boolean[] boolArray, int id) throws SQLException {
+    protected static void updateBoolArray(Connection conn, Table table, String attribute, boolean[] boolArray, int id) throws SQLException {
         String sqlArray = "{" + Arrays.toString(boolArray).substring(1, Arrays.toString(boolArray).length()-1) + "}";
         String sql = String.format("UPDATE %s SET %s = '%s' WHERE id = %s", table, attribute, sqlArray, id);
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -131,14 +132,14 @@ public class DB {
     }
 
     // delete function (delete possible only with id)
-    public static void delete(Connection conn, Table table, int id) throws SQLException {
+    protected static void delete(Connection conn, Table table, int id) throws SQLException {
         String sql = String.format("DELETE FROM %s WHERE id = %s", table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         int n = ps.executeUpdate();
     }
 
     // select functions
-    public static String selectString(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static String selectString(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -148,7 +149,7 @@ public class DB {
         return "Error";
     }
 
-    public static int selectInt(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static int selectInt(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -158,7 +159,7 @@ public class DB {
         return -1;
     }
 
-    public static double selectDouble(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static double selectDouble(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -168,7 +169,7 @@ public class DB {
         return -1;
     }
 
-    public static Date selectDate(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static Date selectDate(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -178,7 +179,7 @@ public class DB {
         return Date.valueOf("1111-11-11");
     }
 
-    public static Timestamp selectTimStamp(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static Timestamp selectTimStamp(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -188,7 +189,7 @@ public class DB {
         return Timestamp.valueOf("1111-11-11 0:0:0");
     }
 
-    public static boolean selectBool(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static boolean selectBool(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -198,19 +199,19 @@ public class DB {
         return false;
     }
 
-    public static boolean[] selectBoolArray(Connection conn, Table table, String attribute, int id) throws SQLException {
+    protected static boolean[] selectBoolArray(Connection conn, Table table, String attribute, int id) throws SQLException {
         String sql = String.format("SELECT %s FROM %s WHERE id = %s", attribute, table, id);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             Array sqlArray = rs.getArray(attribute);
-            return GlobaleFunktionen.convertToPrimitive((Boolean[]) sqlArray.getArray());
+            return GlobaleMethoden.convertToPrimitive((Boolean[]) sqlArray.getArray());
         }
         return new boolean[]{false};
     }
 
     // select id funtions
-    public static int selectIdPerInt(Connection conn, Table table, String searchAttribute, int i) throws SQLException {
+    protected static int selectIdPerInt(Connection conn, Table table, String searchAttribute, int i) throws SQLException {
         String sql = String.format("SELECT id FROM %s WHERE %s = %s", table, searchAttribute, i);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
@@ -220,7 +221,7 @@ public class DB {
         return -1;
     }
 
-    public static int selectIdPerString(Connection conn, Table table, String searchAttribute, String s) throws SQLException {
+    protected static int selectIdPerString(Connection conn, Table table, String searchAttribute, String s) throws SQLException {
         String sql = String.format("SELECT id FROM %s WHERE %s = '%s'", table, searchAttribute, s);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();

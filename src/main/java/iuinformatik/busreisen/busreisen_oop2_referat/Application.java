@@ -1,6 +1,10 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.DBFunktionen;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenMethoden;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.BusseTable;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +19,7 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view.fxml"));
 
         VBox menu = new VBox();
         //Label description = new Label("Type the name of new table: ");
@@ -23,7 +27,7 @@ public class Application extends javafx.application.Application {
         Button create_default_table = new Button("create default table");
         create_default_table.setOnMouseClicked(mouseEvent -> {
 
-            DBFunktionen.buildTableBase();
+            BusreisenMethoden.buildTableBase();
 
         });
 
@@ -31,7 +35,7 @@ public class Application extends javafx.application.Application {
         Button init_data = new Button("init data");
         init_data.setOnMouseClicked(mouseEvent -> {
 
-            DBFunktionen.insertDefaultData();
+            BusreisenMethoden.insertDefaultData();
 
         });
 

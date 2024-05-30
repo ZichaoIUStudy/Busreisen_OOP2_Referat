@@ -1,7 +1,7 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.Colors;
-import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleFunktionen;
+import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleMethoden;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 
 import java.sql.Timestamp;
@@ -84,7 +84,7 @@ public class Busreise {
     }
 
     public void setSitzplaetze(boolean[] sitzplaetze) {
-        Boolean[] array = GlobaleFunktionen.convertToBoolean(sitzplaetze);
+        Boolean[] array = GlobaleMethoden.convertToBoolean(sitzplaetze);
         this.sitzplaetze = Arrays.asList(array);
     }
 

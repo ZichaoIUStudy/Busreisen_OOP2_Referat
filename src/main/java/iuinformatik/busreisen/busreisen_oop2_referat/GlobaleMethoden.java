@@ -1,6 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-public class GlobaleFunktionen {
+public class GlobaleMethoden {
 
     // Boolean[] to boolean[]
     public static boolean[] convertToPrimitive(Boolean[] booleanObjects) {

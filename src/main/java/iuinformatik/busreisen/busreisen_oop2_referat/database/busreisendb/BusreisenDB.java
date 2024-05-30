@@ -1,13 +1,12 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DBType;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.BusseTable;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Praeferenz;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.*;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables.Table;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -16,54 +15,10 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-public class DBFunktionen {
+// for every object in DB, this class offers init/update/select methods, delete method is not suggested to use.
+public class BusreisenDB extends DB {
 
-    public static void buildTableBase(){
-        try (var conn =  DB.connect()){
-            System.out.println("_________Connected to the PostgreSQL database__________");
-            try {
-                conn.setAutoCommit(false);
-
-                createTables(conn);
-
-                System.out.println("_________Successfully create table in the database__________");
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-                conn.close();
-            }
-            System.out.println("_________Finished operation in the database__________");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    public static void insertDefaultData(){
-
-        try (var conn =  DB.connect()){
-            System.out.println("_________Connected to the PostgreSQL database__________");
-            try {
-                conn.setAutoCommit(false);
-
-                BusseTable.createDefaultBusse(conn);
-
-                System.out.println("_________Successfully initialize data in the database__________");
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-                conn.close();
-            }
-            System.out.println("_________Finished operation in the database__________");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    private static void createTables(Connection conn) throws SQLException {
+    protected static void createTables(Connection conn) throws SQLException {
         // create Busse table
         DB.create(conn, Table.BUSSE);
         DB.addColumn(conn, Table.BUSSE, Table.Busse.Kennzeichen, DBType.String);
@@ -379,8 +334,8 @@ public class DBFunktionen {
     public static int getPassagierDBId(Connection conn, int passagierNr) throws SQLException {
         return DB.selectIdPerInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, passagierNr);
     }
-    public static Passagier getPassagier(Connection conn, int fahrerNr) throws SQLException {
-        return getPassagierByDBId(conn, getPassagierDBId(conn, fahrerNr));
+    public static Passagier getPassagier(Connection conn, int passagierNr) throws SQLException {
+        return getPassagierByDBId(conn, getPassagierDBId(conn, passagierNr));
     }
 
     // Busreise

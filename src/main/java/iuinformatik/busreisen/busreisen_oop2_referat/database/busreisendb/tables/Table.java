@@ -1,4 +1,4 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreiseDB.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
 
 public enum Table {
     BUSSE("Busse"),
