@@ -14,6 +14,11 @@ public class Bus {
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
 
+    // Kennzeichen must be assigned.
+    public Bus(String kennzeichen) {
+        setKennzeichen(kennzeichen);
+    }
+
     public String getKennzeichen() {
         return kennzeichen;
     }

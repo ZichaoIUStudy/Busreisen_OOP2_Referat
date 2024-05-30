@@ -23,44 +23,38 @@ public class BusseTable {
     }
 
     private static Bus[] defaultBusseTable() {
-        Bus vw01 = new Bus();
+        Bus vw01 = new Bus("L-EK 6789");
         setBusTypeEins(vw01);
-        vw01.setKennzeichen("L-EK 6789");
         vw01.setZulassung(Date.valueOf("2021-03-01"));
         vw01.setTuevTermin(Date.valueOf("2025-03-01"));
         vw01.setGefahreneKilometer(124.446);
 
-        Bus vw02 = new Bus();
+        Bus vw02 = new Bus("L-FR 1011");
         setBusTypeEins(vw02);
-        vw02.setKennzeichen("L-FR 1011");
         vw02.setZulassung(Date.valueOf("2021-03-01"));
         vw02.setTuevTermin(Date.valueOf("2025-03-01"));
         vw02.setGefahreneKilometer(102.759);
 
-        Bus cityliner01 = new Bus();
+        Bus cityliner01 = new Bus("L-AF 1234");
         setBusTypeZwei(cityliner01);
-        cityliner01.setKennzeichen("L-AF 1234");
         cityliner01.setZulassung(Date.valueOf("2015-05-01"));
         cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
         cityliner01.setGefahreneKilometer(862.345);
 
-        Bus cityliner02 = new Bus();
+        Bus cityliner02 = new Bus("L-BX 5678");
         setBusTypeZwei(cityliner02);
-        cityliner02.setKennzeichen("L-BX 5678");
         cityliner02.setZulassung(Date.valueOf("2015-05-01"));
         cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
         cityliner02.setGefahreneKilometer(789.456);
 
-        Bus cityliner03 = new Bus();
+        Bus cityliner03 = new Bus("L-CG 9101");
         setBusTypeZwei(cityliner03);
-        cityliner03.setKennzeichen("L-CG 9101");
         cityliner03.setZulassung(Date.valueOf("2016-07-01"));
         cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
         cityliner03.setGefahreneKilometer(678.901);
 
-        Bus cityliner04 = new Bus();
+        Bus cityliner04 = new Bus("L-DH 2345");
         setBusTypeZwei(cityliner04);
-        cityliner04.setKennzeichen("L-DH 2345");
         cityliner04.setZulassung(Date.valueOf("2016-07-01"));
         cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
         cityliner04.setGefahreneKilometer(696.332);

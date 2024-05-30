@@ -268,9 +268,8 @@ public class BusreisenDB extends DB {
     // Select objects
     // Bus
     public static Bus getBusByDBId(Connection conn, int id) throws SQLException {
-        Bus bus = new Bus();
+        Bus bus = new Bus(DB.selectString(conn, Table.BUSSE, Table.Busse.Kennzeichen, id));
 
-        bus.setKennzeichen(DB.selectString(conn, Table.BUSSE, Table.Busse.Kennzeichen, id));
         bus.setBusTyp(BusTyp.getBusTypById(DB.selectInt(conn, Table.BUSSE, Table.Busse.BusTypNr, id)));
         bus.setZulassung(DB.selectDate(conn, Table.BUSSE, Table.Busse.Zulassung, id));
         bus.setTuevTermin(DB.selectDate(conn, Table.BUSSE, Table.Busse.TuevTermin, id));
@@ -287,9 +286,8 @@ public class BusreisenDB extends DB {
 
     // Fahrer
     public static Fahrer getFahrerByDBId(Connection conn, int id) throws SQLException {
-        Fahrer fahrer = new Fahrer();
+        Fahrer fahrer = new Fahrer(DB.selectInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, id));
 
-        fahrer.setFahrerNr(DB.selectInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, id));
         fahrer.setName(DB.selectString(conn, Table.FAHRER, Table.Fahrer.Name, id));
         fahrer.setVorname(DB.selectString(conn, Table.FAHRER, Table.Fahrer.Vorname, id));
         fahrer.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.getFuehrerscheinklasseById
@@ -305,9 +303,8 @@ public class BusreisenDB extends DB {
 
     // Adresse
     public static Adresse getAdresseByDBId(Connection conn, int id) throws SQLException {
-        Adresse adresse = new Adresse();
+        Adresse adresse = new Adresse(DB.selectInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, id));
 
-        adresse.setAdresseId(DB.selectInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, id));
         adresse.setStrasse(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.Strasse, id));
         adresse.setHausnummer(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.Hausnummer, id));
         adresse.setPlz(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.PLZ, id));
@@ -323,9 +320,8 @@ public class BusreisenDB extends DB {
 
     // Passagier
     public static Passagier getPassagierByDBId(Connection conn, int id) throws SQLException {
-        Passagier passagier = new Passagier();
+        Passagier passagier = new Passagier(DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, id));
 
-        passagier.setPassagierNr(DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, id));
         passagier.setName(DB.selectString(conn, Table.PASSAGIERE, Table.Passagiere.Name, id));
         passagier.setVorname(DB.selectString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, id));
         passagier.setAdresse(getAdresse(conn, DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, id)));
@@ -340,9 +336,8 @@ public class BusreisenDB extends DB {
 
     // Busreise
     public static Busreise getBusreiseByDBId(Connection conn, int id) throws SQLException {
-        Busreise busreise = new Busreise();
+        Busreise busreise = new Busreise(DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, id));
 
-        busreise.setReiseNr(DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, id));
         busreise.setFahrtbeginn(DB.selectTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, id));
         busreise.setFahrtende(DB.selectTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, id));
         busreise.setFahrer(getFahrer(conn, DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr,id)));
@@ -361,9 +356,8 @@ public class BusreisenDB extends DB {
 
     // Buchung
     public static Buchung getBuchungByDBId(Connection conn, int id) throws SQLException {
-        Buchung buchung = new Buchung();
+        Buchung buchung = new Buchung(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, id));
 
-        buchung.setBuchungsNr(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, id));
         buchung.setPassagier(getPassagier(conn, DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, id)));
         buchung.setSitzplatz(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, id));
         buchung.setPraeferenz(Praeferenz.getPraeferenzById(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, id)));

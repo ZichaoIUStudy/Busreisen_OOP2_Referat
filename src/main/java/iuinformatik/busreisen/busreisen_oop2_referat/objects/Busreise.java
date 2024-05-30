@@ -21,6 +21,11 @@ public class Busreise {
     private Double kostenProPerson;
     private List<Boolean> sitzplaetze;
 
+    // reiseNr must be assigned.
+    public Busreise(int reiseNr) {
+        setReiseNr(reiseNr);
+    }
+
     public int getReiseNr() {
         return reiseNr;
     }

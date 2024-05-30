@@ -10,42 +10,42 @@ import java.sql.SQLException;
 public class FahrerTable {
 
     private static Fahrer[] defaultFahrerTable() {
-        Fahrer Fahrer1 = new Fahrer();
+        Fahrer Fahrer1 = new Fahrer(1);
         Fahrer1.setName("Müller");
         Fahrer1.setVorname("Petra");
         Fahrer1.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
 
-        Fahrer Fahrer2 = new Fahrer();
+        Fahrer Fahrer2 = new Fahrer(2);
         Fahrer2.setName("Schmidt");
         Fahrer2.setVorname("Thomas");
         Fahrer2.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
 
-        Fahrer Fahrer3 = new Fahrer();
+        Fahrer Fahrer3 = new Fahrer(3);
         Fahrer3.setName("Fischer");
         Fahrer3.setVorname("Gabriele");
         Fahrer3.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer4 = new Fahrer();
+        Fahrer Fahrer4 = new Fahrer(4);
         Fahrer4.setName("Weber");
         Fahrer4.setVorname("Wolfgang");
         Fahrer4.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer5 = new Fahrer();
+        Fahrer Fahrer5 = new Fahrer(5);
         Fahrer5.setName("Schulz");
         Fahrer5.setVorname("Karin");
         Fahrer5.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer6 = new Fahrer();
+        Fahrer Fahrer6 = new Fahrer(6);
         Fahrer6.setName("Meyer");
         Fahrer6.setVorname("Jürgen");
         Fahrer6.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer7 = new Fahrer();
+        Fahrer Fahrer7 = new Fahrer(7);
         Fahrer7.setName("Hoffmann");
         Fahrer7.setVorname("Monika");
         Fahrer7.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer8 = new Fahrer();
+        Fahrer Fahrer8 = new Fahrer(8);
         Fahrer8.setName("Becker");
         Fahrer8.setVorname("Hans");
         Fahrer8.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);

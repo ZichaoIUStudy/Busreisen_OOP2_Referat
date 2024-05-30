@@ -8,6 +8,11 @@ public class Adresse {
     private String plz;
     private String ort;
 
+    // AdresseID must be assigned.
+    public Adresse(int adresseId) {
+        setAdresseId(adresseId);
+    }
+
     public int getAdresseId() {
         return adresseId;
     }

@@ -12,10 +12,10 @@ public class BesetzungsanzeigenTest {
 
     public static void main(String[] args) {
         // Kleinbus
-        Bus kleinbus = new Bus();
+        Bus kleinbus = new Bus("kleinbus");
         kleinbus.setBusTyp(BusTyp.KLEINBUS);
 
-        Busreise busreiseKleinbus = new Busreise();
+        Busreise busreiseKleinbus = new Busreise(1);
         busreiseKleinbus.setBus(kleinbus);
         busreiseKleinbus.setSitzplatzBesetzt(3, Boolean.TRUE);
         busreiseKleinbus.setSitzplatzBesetzt(4, Boolean.TRUE);
@@ -23,10 +23,10 @@ public class BesetzungsanzeigenTest {
         busreiseKleinbus.showBusBesetzung();
 
         // Reisebus
-        Bus reisebus = new Bus();
+        Bus reisebus = new Bus("reisebus");
         reisebus.setBusTyp(BusTyp.REISEBUS);
 
-        Busreise busreiseReisebus = new Busreise();
+        Busreise busreiseReisebus = new Busreise(2);
         busreiseReisebus.setBus(reisebus);
         busreiseReisebus.setSitzplatzBesetzt(5, Boolean.TRUE);
         busreiseReisebus.setSitzplatzBesetzt(19, Boolean.TRUE);

@@ -7,28 +7,28 @@ public class PaarbuchungsTest {
 
     public static void main(String[] args) {
         // KLEINBUS
-        Bus kleinbus = new Bus();
+        Bus kleinbus = new Bus("");
         kleinbus.setBusTyp(BusTyp.KLEINBUS);
         //kleinbus.setSitzplatzBesetzt(4, Boolean.TRUE); // wenn gesetzt dann Ausgabe 6, sonst 4
 
-        Busreise busreiseKleinbus = new Busreise();
+        Busreise busreiseKleinbus = new Busreise(1);
         busreiseKleinbus.setBus(kleinbus);
 
-        Paarbuchung pbKleinbus = new Paarbuchung();
+        Paarbuchung pbKleinbus = new Paarbuchung(1);
         pbKleinbus.setBusreise(busreiseKleinbus);
         pbKleinbus.setSitzplatz(5);
 
         System.out.println("Kleinbus: " + pbKleinbus.getPartnerSitzplatz());
 
         // REISEBUS
-        Bus reisebus = new Bus();
+        Bus reisebus = new Bus("");
         reisebus.setBusTyp(BusTyp.REISEBUS);
         //reisebus.setSitzplatzBesetzt(55, Boolean.TRUE); // wenn gesetzt dann Ausgabe 57, sonst 55
 
-        Busreise busreiseReisebus = new Busreise();
+        Busreise busreiseReisebus = new Busreise(1);
         busreiseReisebus.setBus(reisebus);
 
-        Paarbuchung pbReisebus = new Paarbuchung();
+        Paarbuchung pbReisebus = new Paarbuchung(1);
         pbReisebus.setBusreise(busreiseReisebus);
         pbReisebus.setSitzplatz(56);
 
