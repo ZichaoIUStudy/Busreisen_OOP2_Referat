@@ -1,11 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenMethoden;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.BusseTable;
-import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
-import javafx.fxml.FXMLLoader;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDBVerwaltung;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -27,7 +22,7 @@ public class Application extends javafx.application.Application {
         Button create_default_table = new Button("create default table");
         create_default_table.setOnMouseClicked(mouseEvent -> {
 
-            BusreisenMethoden.buildTableBase();
+            BusreisenDBVerwaltung.buildTableBase();
 
         });
 
@@ -35,26 +30,26 @@ public class Application extends javafx.application.Application {
         Button init_data = new Button("init data");
         init_data.setOnMouseClicked(mouseEvent -> {
 
-            BusreisenMethoden.insertDefaultData();
+            BusreisenDBVerwaltung.insertDefaultData();
 
         });
 
-        Button select_data = new Button("select data");
-        select_data.setOnMouseClicked(mouseEvent -> {
+        TextField vorname = new TextField();
+        vorname.setPromptText("Vorname");
+        vorname.setMaxWidth(80);
+        TextField name = new TextField();
+        name.setPromptText("Name");
+        name.setMaxWidth(80);
 
-            BusreisenMethoden.selectData();
+        Button get_driver_id = new Button("get driver id");
+        get_driver_id.setOnMouseClicked(mouseEvent -> {
+
+            BusreisenVerwaltung.showDriverId(vorname.getText(), name.getText());
 
         });
 
-
-        TextField dropInput = new TextField();
-        dropInput.setMaxWidth(100);
-
-        Button drop = new Button("Drop Table");
-
-
-        menu.getChildren().addAll(create_default_table, init_data, select_data,
-                dropInput, drop);
+        menu.getChildren().addAll(create_default_table, init_data,
+                vorname, name, get_driver_id);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menu);

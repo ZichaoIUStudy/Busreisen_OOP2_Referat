@@ -8,7 +8,7 @@ import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables
 import java.sql.SQLException;
 
 // all the functions which can be directly applied on user interface.
-public class BusreisenMethoden {
+public class BusreisenDBVerwaltung {
 
     public static void buildTableBase(){
         try (var conn =  DB.connect()){
@@ -57,26 +57,5 @@ public class BusreisenMethoden {
         }
     }
 
-    public static void selectData(){
 
-        try (var conn =  DB.connect()){
-            System.out.println("_________Connected to the PostgreSQL database__________");
-            try {
-                conn.setAutoCommit(false);
-
-                System.out.println(BusreisenDB.getFahrerDBIds(conn, "Thomas", "Schmidt"));
-
-                System.out.println("_________Successfully print data from the database__________");
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-            } finally {
-                conn.setAutoCommit(true);
-                conn.close();
-            }
-            System.out.println("_________Finished operation in the database__________");
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
 }
