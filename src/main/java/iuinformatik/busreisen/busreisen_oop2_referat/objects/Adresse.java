@@ -13,8 +13,8 @@ public class Adresse {
     }
 
     // WICHTIG! Das Key Value nach der ersten Einstellung soll nicht mehr geändert werden.
-    public void setAdresseId(int adressId) {
-        this.adresseId = this.adresseId == 0 ? adressId : this.adresseId;
+    public void setAdresseId(int adresseId) {
+        this.adresseId = this.adresseId == 0 ? adresseId : this.adresseId;
     }
 
     public String getStrasse() {
