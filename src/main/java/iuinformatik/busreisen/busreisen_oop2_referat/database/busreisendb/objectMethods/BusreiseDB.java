@@ -1,4 +1,4 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Adresse;
@@ -8,9 +8,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BusreisenTable {
+public class BusreiseDB {
 
-    // DB Operations
     public static int initBusreise(Connection conn, Busreise busreise) throws SQLException {
         // check if it already exists in DB, if not then initialize it
         List<Integer> reiseNrs = BusreisenDB.getBusreiseDBIds(conn, busreise.getZielort());

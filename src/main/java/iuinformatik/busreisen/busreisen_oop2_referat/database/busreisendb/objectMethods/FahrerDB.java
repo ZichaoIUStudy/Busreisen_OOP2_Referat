@@ -1,16 +1,13 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
-import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Fahrer;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class FahrerTable {
-
-    // DB Operations
+public class FahrerDB {
 
     public static int initFahrer(Connection conn, Fahrer fahrer) throws SQLException {
         // check if it already exists in DB, if not then initialize it

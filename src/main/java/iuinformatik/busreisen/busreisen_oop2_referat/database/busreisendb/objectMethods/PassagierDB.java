@@ -1,29 +1,14 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
-import iuinformatik.busreisen.busreisen_oop2_referat.objects.Adresse;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Passagier;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PassagiereTable {
+public class PassagierDB {
 
-    private static Passagier[] defaultPassagiereTable() {
-
-
-
-        Passagier passagier = new Passagier();
-        passagier.setPassagierNr(1);
-        passagier.setAdresse(adresse1);
-
-
-
-        return new Passagier[] {};
-    }
-
-    // DB Operations
     public static int initPassagier(Connection conn, Passagier passagier) throws SQLException {
         // // check if it already exists in DB, if not then initialize it
         List<Integer> passagierNrs = BusreisenDB.getPassagierDBIds(conn, passagier.getVorname(), passagier.getName());

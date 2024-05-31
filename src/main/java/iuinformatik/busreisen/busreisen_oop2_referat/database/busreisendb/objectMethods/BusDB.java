@@ -1,14 +1,13 @@
-package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
+package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Bus;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 
-public class BusseTable {
+public class BusDB {
 
     // VW 9-Sitzer-Busse
     public static void setBusTypeEins(Bus bus) {
@@ -21,7 +20,6 @@ public class BusseTable {
         bus.setBusTyp(BusTyp.REISEBUS);
         bus.setKostenProKilometer(1.2);
     }
-
 
     // DB Operations
 

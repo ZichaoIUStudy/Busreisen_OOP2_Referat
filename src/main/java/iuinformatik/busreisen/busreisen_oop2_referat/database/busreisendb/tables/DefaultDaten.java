@@ -1,9 +1,11 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables;
 
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods.AdresseDB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods.BusDB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods.FahrerDB;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Adresse;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Bus;
-import iuinformatik.busreisen.busreisen_oop2_referat.objects.Busreise;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.Fahrer;
 
 import java.sql.Connection;
@@ -12,41 +14,41 @@ import java.sql.SQLException;
 
 public class DefaultDaten {
 
-    private static void defaultDatenBank() {
+    public static void defaultDatenBank() {
 
         // defalut busse
         Bus vw01 = new Bus("L-EK 6789");
-        BusseTable.setBusTypeEins(vw01);
+        BusDB.setBusTypeEins(vw01);
         vw01.setZulassung(Date.valueOf("2021-03-01"));
         vw01.setTuevTermin(Date.valueOf("2025-03-01"));
         vw01.setGefahreneKilometer(124.446);
 
         Bus vw02 = new Bus("L-FR 1011");
-        BusseTable.setBusTypeEins(vw02);
+        BusDB.setBusTypeEins(vw02);
         vw02.setZulassung(Date.valueOf("2021-03-01"));
         vw02.setTuevTermin(Date.valueOf("2025-03-01"));
         vw02.setGefahreneKilometer(102.759);
 
         Bus cityliner01 = new Bus("L-AF 1234");
-        BusseTable.setBusTypeZwei(cityliner01);
+        BusDB.setBusTypeZwei(cityliner01);
         cityliner01.setZulassung(Date.valueOf("2015-05-01"));
         cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
         cityliner01.setGefahreneKilometer(862.345);
 
         Bus cityliner02 = new Bus("L-BX 5678");
-        BusseTable.setBusTypeZwei(cityliner02);
+        BusDB.setBusTypeZwei(cityliner02);
         cityliner02.setZulassung(Date.valueOf("2015-05-01"));
         cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
         cityliner02.setGefahreneKilometer(789.456);
 
         Bus cityliner03 = new Bus("L-CG 9101");
-        BusseTable.setBusTypeZwei(cityliner03);
+        BusDB.setBusTypeZwei(cityliner03);
         cityliner03.setZulassung(Date.valueOf("2016-07-01"));
         cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
         cityliner03.setGefahreneKilometer(678.901);
 
         Bus cityliner04 = new Bus("L-DH 2345");
-        BusseTable.setBusTypeZwei(cityliner04);
+        BusDB.setBusTypeZwei(cityliner04);
         cityliner04.setZulassung(Date.valueOf("2016-07-01"));
         cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
         cityliner04.setGefahreneKilometer(696.332);
@@ -535,12 +537,15 @@ public class DefaultDaten {
         adressen[59] = adresse60;
 */
 
+        //createDefaultBusse();
+        //FahrerDB.initFahrerGroup();
+        //AdresseDB.initAdressenGroup();
     }
 
     private static void createDefaultBusse(Connection conn, Bus[] busse) throws SQLException {
-        BusseTable.initBusGroup(conn, busse);
+        BusDB.initBusGroup(conn, busse);
         for (Bus bus: busse) {
-            BusseTable.updateBus(conn, bus);
+            BusDB.updateBus(conn, bus);
         }
     }
 }
