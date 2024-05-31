@@ -7,10 +7,6 @@ public class Paarbuchung extends Buchung {
     private Passagier passagierPartner;
     private int partnerSitzplatz = -1;
 
-    public Paarbuchung(int buchungsNr) {
-        super(buchungsNr);
-    }
-
     public Passagier getPassagierPartner() {
         return passagierPartner;
     }

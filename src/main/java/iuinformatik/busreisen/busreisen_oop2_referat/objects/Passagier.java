@@ -7,11 +7,6 @@ public class Passagier {
     private String vorname;
     private Adresse adresse;
 
-    // passagierNr must be assigned.
-    public Passagier(int passagierNr) {
-        setPassagierNr(passagierNr);
-    }
-
     public int getPassagierNr() {
         return passagierNr;
     }

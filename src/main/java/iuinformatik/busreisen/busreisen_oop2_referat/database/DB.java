@@ -4,7 +4,9 @@ import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleMethoden;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 // Alle Methoden ausser connect sind protected
 public class DB {
@@ -221,14 +223,37 @@ public class DB {
         return -1;
     }
 
-    protected static int selectIdPerString(Connection conn, Table table, String searchAttribute, String s) throws SQLException {
+    protected static List<Integer> selectIdsPerInt(Connection conn, Table table, String searchAttribute, int i) throws SQLException {
+        List<Integer> ids = new ArrayList<>();
+        String sql = String.format("SELECT id FROM %s WHERE %s = %s", table, searchAttribute, i);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ids.add(rs.getInt("id"));
+        }
+        return ids;
+    }
+
+    protected static List<Integer> selectIdsPerString(Connection conn, Table table, String searchAttribute, String s) throws SQLException {
+        List<Integer> ids = new ArrayList<>();
         String sql = String.format("SELECT id FROM %s WHERE %s = '%s'", table, searchAttribute, s);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            return rs.getInt("id");
+            ids.add(rs.getInt("id"));
         }
-        return -1;
+        return ids;
+    }
+
+    protected static List<Integer> selectIdsPerString(Connection conn, Table table, String searchAttribute, String s, String subSearchAttribute, String ss) throws SQLException {
+        List<Integer> ids = new ArrayList<>();
+        String sql = String.format("SELECT id FROM %s WHERE %s = '%s' AND %s = '%s'", table, searchAttribute, s, subSearchAttribute, ss);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ids.add(rs.getInt("id"));
+        }
+        return ids;
     }
 
 }

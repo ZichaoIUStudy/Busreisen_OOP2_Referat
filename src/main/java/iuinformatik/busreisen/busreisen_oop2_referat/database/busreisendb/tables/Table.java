@@ -20,14 +20,14 @@ public enum Table {
     }
 
     public static final class Fahrer {
-        public static final String FahrerNr = "FahrerNr";
+        //public static final String FahrerNr = "FahrerNr";
         public static final String Name = "Name";
         public static final String Vorname = "Vorname";
         public static final String FuehrerscheinKlasse = "FuehrerscheinKlasse";
     }
 
     public static final class Adressen {
-        public static final String AdresseId = "AdresseId";
+        //public static final String AdresseId = "AdresseId";
         public static final String Strasse = "Strasse";
         public static final String Hausnummer = "Hausnummer";
         public static final String PLZ = "PLZ";
@@ -35,14 +35,14 @@ public enum Table {
     }
 
     public static final class Passagiere {
-        public static final String PassagierNr = "PassagierNr";
+        //public static final String PassagierNr = "PassagierNr";
         public static final String Name = "Name";
         public static final String Vorname = "Vorname";
         public static final String AdressId = "AdressId";
     }
 
     public static final class Busreisen {
-        public static final String ReiseNr = "ReiseNr";
+        //public static final String ReiseNr = "ReiseNr";
         public static final String Fahrtbeginn = "Fahrtbeginn";
         public static final String Fahrtende = "Fahrtende";
         public static final String FahrerNr = "FahrerNr";
@@ -53,7 +53,7 @@ public enum Table {
     }
 
     public static final class Buchungen {
-        public static final String BuchungsNr = "BuchungsNr";
+        //public static final String BuchungsNr = "BuchungsNr";
         public static final String PassagierNr = "PassagierNr";
         public static final String Sitzplatz = "Sitzplatz";
         public static final String Praeferenz = "Praeferenz";

@@ -9,11 +9,6 @@ public class Fahrer {
     private String vorname;
     private Fuehrerscheinklasse hoechsteFuehrerscheinklasse;
 
-    // FahrerNr must be assigned.
-    public Fahrer(int fahrerNr) {
-        setFahrerNr(fahrerNr);
-    }
-
     public int getFahrerNr() {
         return fahrerNr;
     }

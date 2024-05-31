@@ -39,6 +39,13 @@ public class Application extends javafx.application.Application {
 
         });
 
+        Button select_data = new Button("select data");
+        select_data.setOnMouseClicked(mouseEvent -> {
+
+            BusreisenMethoden.selectData();
+
+        });
+
 
         TextField dropInput = new TextField();
         dropInput.setMaxWidth(100);
@@ -46,7 +53,7 @@ public class Application extends javafx.application.Application {
         Button drop = new Button("Drop Table");
 
 
-        menu.getChildren().addAll(create_default_table, init_data,
+        menu.getChildren().addAll(create_default_table, init_data, select_data,
                 dropInput, drop);
 
         BorderPane borderPane = new BorderPane();

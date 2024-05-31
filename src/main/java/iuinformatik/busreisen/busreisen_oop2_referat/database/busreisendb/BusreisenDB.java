@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,14 +31,14 @@ public class BusreisenDB extends DB {
 
         // create Fahrer table
         DB.create(conn, Table.FAHRER);
-        DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FahrerNr, DBType.Int);
+        //DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FahrerNr, DBType.Int);
         DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Name, DBType.String);
         DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Vorname, DBType.String);
         DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, DBType.Int);
 
         // create Adressen table
         DB.create(conn, Table.ADRESSEN);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.AdresseId, DBType.Int);
+        //DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.AdresseId, DBType.Int);
         DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Strasse, DBType.LongString);
         DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Hausnummer, DBType.String);
         DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.PLZ, DBType.String);
@@ -45,14 +46,14 @@ public class BusreisenDB extends DB {
 
         // create Passagiere table
         DB.create(conn, Table.PASSAGIERE);
-        DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, DBType.Int);
+        //DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, DBType.Int);
         DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Name, DBType.String);
         DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, DBType.String);
         DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, DBType.Int);
 
         // create Busreisen table
         DB.create(conn, Table.BUSREISEN);
-        DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, DBType.Int);
+        //DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, DBType.Int);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, DBType.TimeStamp);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, DBType.TimeStamp);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr, DBType.Int);
@@ -63,7 +64,7 @@ public class BusreisenDB extends DB {
 
         // create Buchungen table
         DB.create(conn, Table.BUCHUNGEN);
-        DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, DBType.Int);
+        //DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, DBType.Int);
@@ -88,24 +89,22 @@ public class BusreisenDB extends DB {
     }
 
     // Fahrer
-    private static int initializeFahrerDB(Connection conn, int fahrerNr, String name, String vorname ,int fuehrerscheinKlasse) throws SQLException {
+    private static int initializeFahrerDB(Connection conn, String name, String vorname ,int fuehrerscheinKlasse) throws SQLException {
 
-        int id = DB.insertInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, fahrerNr);
-        DB.updateString(conn, Table.FAHRER, Table.Fahrer.Name, name, id);
+        int id = DB.insertString(conn, Table.FAHRER, Table.Fahrer.Name, name);
         DB.updateString(conn, Table.FAHRER, Table.Fahrer.Vorname,vorname ,id);
         DB.updateInt(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, fuehrerscheinKlasse,id);
 
         return id;
     }
     public static int initFahrer(Connection conn, Fahrer fahrer) throws SQLException {
-        return initializeFahrerDB(conn, fahrer.getFahrerNr(), fahrer.getName(), fahrer.getVorname(), fahrer.getHoechsteFuehrerscheinklasse().getId());
+        return initializeFahrerDB(conn, fahrer.getName(), fahrer.getVorname(), fahrer.getHoechsteFuehrerscheinklasse().getId());
     }
 
     // Adresse
-    private static int initializeAdresseDB(Connection conn, int adresseId, String strasse, String hausnummer ,String plz, String ort) throws SQLException {
+    private static int initializeAdresseDB(Connection conn, String strasse, String hausnummer ,String plz, String ort) throws SQLException {
 
-        int id = DB.insertInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, adresseId);
-        DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Strasse, strasse, id);
+        int id = DB.insertString(conn, Table.ADRESSEN, Table.Adressen.Strasse, strasse);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Hausnummer,hausnummer ,id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.PLZ, plz,id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Ort, ort,id);
@@ -113,32 +112,30 @@ public class BusreisenDB extends DB {
         return id;
     }
     public static int initAdresse(Connection conn, Adresse adresse) throws SQLException {
-        return initializeAdresseDB(conn, adresse.getAdresseId(), adresse.getStrasse(), adresse.getHausnummer(), adresse.getPlz(), adresse.getOrt());
+        return initializeAdresseDB(conn, adresse.getStrasse(), adresse.getHausnummer(), adresse.getPlz(), adresse.getOrt());
     }
 
     // Passagier
-    private static int initializePassagierDB(Connection conn, int passagierNr, String name, String vorname ,int adresseId) throws SQLException {
+    private static int initializePassagierDB(Connection conn, String name, String vorname ,int adresseId) throws SQLException {
 
-        int id = DB.insertInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, passagierNr);
-        DB.updateString(conn, Table.PASSAGIERE, Table.Passagiere.Name, name, id);
-        DB.updateString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname,vorname ,id);
-        DB.updateInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, adresseId,id);
+        int id = DB.insertString(conn, Table.PASSAGIERE, Table.Passagiere.Name, name);
+        DB.updateString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, vorname, id);
+        DB.updateInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, adresseId, id);
 
         return id;
     }
     public static int initPassagier(Connection conn, Passagier passagier) throws SQLException {
-        return initializePassagierDB(conn, passagier.getPassagierNr(), passagier.getName(), passagier.getVorname(), passagier.getAdresse().getAdresseId());
+        return initializePassagierDB(conn, passagier.getName(), passagier.getVorname(), passagier.getAdresse().getAdresseId());
     }
 
     // Busreise
-    private static int initializeBusreiseDB(Connection conn, int reiseNr, Timestamp fahrtbeginn, Timestamp fahrtende , int fahrerNr,
+    private static int initializeBusreiseDB(Connection conn, Timestamp fahrtbeginn, Timestamp fahrtende , int fahrerNr,
                                            Bus bus, int adresseId, Double kostenProPerson) throws SQLException {
 
-        int id = DB.insertInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, reiseNr);
+        int id = DB.insertString(conn, Table.BUSREISEN, Table.Busreisen.BusKennzeichen, bus.getKennzeichen());
         DB.updateTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, fahrtbeginn, id);
         DB.updateTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, fahrtende, id);
         DB.updateInt(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr, fahrerNr, id);
-        DB.updateString(conn, Table.BUSREISEN, Table.Busreisen.BusKennzeichen, bus.getKennzeichen(), id);
         DB.updateInt(conn, Table.BUSREISEN, Table.Busreisen.AdresseId, adresseId, id);
         DB.updateDouble(conn, Table.BUSREISEN, Table.Busreisen.KostenProPerson,kostenProPerson ,id);
 
@@ -149,16 +146,15 @@ public class BusreisenDB extends DB {
         return id;
     }
     public static int initBusreise(Connection conn, Busreise busreise) throws SQLException {
-        return initializeBusreiseDB(conn, busreise.getReiseNr(), busreise.getFahrtbeginn(), busreise.getFahrtEnde(),
+        return initializeBusreiseDB(conn, busreise.getFahrtbeginn(), busreise.getFahrtEnde(),
                 busreise.getFahrer().getFahrerNr(), busreise.getBus(), busreise.getZielort().getAdresseId(), busreise.getKostenProPerson());
     }
 
     // Buchunu
-    private static int initializeBuchungDB(Connection conn, int buchungsNr, int passagierNr, int sitzplatz , int praeferenz, int reiseNr, boolean heizdecke) throws SQLException {
+    private static int initializeBuchungDB(Connection conn, int passagierNr, int sitzplatz , int praeferenz, int reiseNr, boolean heizdecke) throws SQLException {
 
-        int id = DB.insertInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, buchungsNr);
+        int id = DB.insertInt(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, sitzplatz);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, passagierNr, id);
-        DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, sitzplatz, id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, praeferenz, id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.ReiseNr, reiseNr, id);
         DB.updateBool(conn, Table.BUCHUNGEN, Table.Buchungen.Heizdecke, heizdecke, id);;
@@ -166,16 +162,15 @@ public class BusreisenDB extends DB {
         return id;
     }
     public static int initBuchung(Connection conn, Buchung buchung) throws SQLException {
-        return initializeBuchungDB(conn, buchung.getBuchungsNr(), buchung.getPassagier().getPassagierNr(),
+        return initializeBuchungDB(conn, buchung.getPassagier().getPassagierNr(),
                 buchung.getSitzplatz(), buchung.getPraeferenz().getId(), buchung.getBusreise().getReiseNr(), buchung.isInklusiveHeizdecke());
     }
 
     // Update objects
     // Bus
-    private static void updateBusDB(Connection conn, String kennzeichen, int busTypNr, Date zulassung, Date tuevTermin,
+    private static void updateBusDB(Connection conn, int busTypNr, Date zulassung, Date tuevTermin,
                                    Double gefahreneKilo, Double kostenProKilo, int id) throws SQLException {
 
-        DB.updateString(conn, Table.BUSSE, Table.Busse.Kennzeichen, kennzeichen, id);
         DB.updateInt(conn, Table.BUSSE, Table.Busse.BusTypNr, busTypNr, id);
         DB.updateDate(conn, Table.BUSSE, Table.Busse.Zulassung, zulassung, id);
         DB.updateDate(conn, Table.BUSSE, Table.Busse.TuevTermin, tuevTermin, id);
@@ -183,51 +178,47 @@ public class BusreisenDB extends DB {
         DB.updateDouble(conn, Table.BUSSE, Table.Busse.KostenProKilo, kostenProKilo,id);
     }
     public static void updateBus(Connection conn, Bus bus, int id) throws SQLException {
-        updateBusDB(conn, bus.getKennzeichen(), bus.getBusTyp().getId(), bus.getZulassung(), bus.getTuevTermin(), bus.getGefahreneKilometer(), bus.getKostenProKilometer(), id);
+        updateBusDB(conn, bus.getBusTyp().getId(), bus.getZulassung(), bus.getTuevTermin(), bus.getGefahreneKilometer(), bus.getKostenProKilometer(), id);
     }
 
     // Fahrer
-    private static void updateFahrerDB(Connection conn, int fahrerNr, String name, String vorname, int fuehrerscheinKlasse, int id) throws SQLException {
+    private static void updateFahrerDB(Connection conn, String name, String vorname, int fuehrerscheinKlasse, int id) throws SQLException {
 
-        DB.updateInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, fahrerNr, id);
         DB.updateString(conn, Table.FAHRER, Table.Fahrer.Name, name, id);
         DB.updateString(conn, Table.FAHRER, Table.Fahrer.Vorname,vorname ,id);
         DB.updateInt(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, fuehrerscheinKlasse, id);
     }
-    public static void updateFahrer(Connection conn, Fahrer fahrer, int id) throws SQLException {
-        updateFahrerDB(conn, fahrer.getFahrerNr(), fahrer.getName(), fahrer.getVorname(), fahrer.getHoechsteFuehrerscheinklasse().getId(), id);
+    public static void updateFahrer(Connection conn, Fahrer fahrer, int fahrerNr) throws SQLException {
+        updateFahrerDB(conn, fahrer.getName(), fahrer.getVorname(), fahrer.getHoechsteFuehrerscheinklasse().getId(), fahrerNr);
     }
 
     // Adresse
-    private static void updateAdresseDB(Connection conn, int adresseId, String strasse, String hausnummer ,String plz, String ort, int id) throws SQLException {
+    private static void updateAdresseDB(Connection conn, String strasse, String hausnummer ,String plz, String ort, int id) throws SQLException {
 
-        DB.updateInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, adresseId, id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Strasse, strasse, id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Hausnummer,hausnummer ,id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.PLZ, plz,id);
         DB.updateString(conn, Table.ADRESSEN, Table.Adressen.Ort, ort,id);
     }
-    public static void updateAdresse(Connection conn, Adresse adresse, int id) throws SQLException {
-        updateAdresseDB(conn, adresse.getAdresseId(), adresse.getStrasse(), adresse.getHausnummer(), adresse.getPlz(), adresse.getOrt(), id);
+    public static void updateAdresse(Connection conn, Adresse adresse, int adresseId) throws SQLException {
+        updateAdresseDB(conn, adresse.getStrasse(), adresse.getHausnummer(), adresse.getPlz(), adresse.getOrt(), adresseId);
     }
 
     // Passagier
-    private static void updatePassagierDB(Connection conn, int passagierNr, String name, String vorname, int adresseId, int id) throws SQLException {
+    private static void updatePassagierDB(Connection conn, String name, String vorname, int adresseId, int id) throws SQLException {
 
-        DB.updateInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, passagierNr, id);
         DB.updateString(conn, Table.PASSAGIERE, Table.Passagiere.Name, name, id);
         DB.updateString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname,vorname ,id);
         DB.updateInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, adresseId,id);
     }
-    public static void updatePassagier(Connection conn, Passagier passagier, int id) throws SQLException {
-        updatePassagierDB(conn, passagier.getPassagierNr(), passagier.getName(), passagier.getVorname(), passagier.getAdresse().getAdresseId(), id);
+    public static void updatePassagier(Connection conn, Passagier passagier, int passagierNr) throws SQLException {
+        updatePassagierDB(conn, passagier.getName(), passagier.getVorname(), passagier.getAdresse().getAdresseId(), passagierNr);
     }
 
     // Busreise
-    private static void updateBusreiseDB(Connection conn, int reiseNr, Timestamp fahrtbeginn, Timestamp fahrtende , int fahrerNr,
+    private static void updateBusreiseDB(Connection conn, Timestamp fahrtbeginn, Timestamp fahrtende , int fahrerNr,
                                         Bus bus, int adresseId, Double kostenProPerson, boolean[] sitzplaetze, int id) throws SQLException {
 
-        DB.updateInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, reiseNr, id);
         DB.updateTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, fahrtbeginn, id);
         DB.updateTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, fahrtende, id);
         DB.updateInt(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr, fahrerNr, id);
@@ -236,27 +227,26 @@ public class BusreisenDB extends DB {
         DB.updateDouble(conn, Table.BUSREISEN, Table.Busreisen.KostenProPerson,kostenProPerson ,id);
         DB.updateBoolArray(conn, Table.BUSREISEN, Table.Busreisen.Sitzplaetze, sitzplaetze, id);
     }
-    public static void updateBusreise(Connection conn, Busreise busreise, int id) throws SQLException {
+    public static void updateBusreise(Connection conn, Busreise busreise, int reiseNr) throws SQLException {
         List<Boolean> list = busreise.getSitzplaetze();
         boolean[] boolArray = new boolean[list.size()];
         for(int i = 0; i < list.size(); i++) boolArray[i] = list.get(i);
-        updateBusreiseDB(conn, busreise.getReiseNr(), busreise.getFahrtbeginn(), busreise.getFahrtEnde(), busreise.getFahrer().getFahrerNr(),
-                busreise.getBus(), busreise.getZielort().getAdresseId(), busreise.getKostenProPerson(), boolArray, id);
+        updateBusreiseDB(conn, busreise.getFahrtbeginn(), busreise.getFahrtEnde(), busreise.getFahrer().getFahrerNr(),
+                busreise.getBus(), busreise.getZielort().getAdresseId(), busreise.getKostenProPerson(), boolArray, reiseNr);
     }
 
     // Buchung
-    private static void updateBuchungDB(Connection conn, int buchungsNr, int passagierNr, int sitzplatz , int praeferenz, int reiseNr, boolean heizdecke, int id) throws SQLException {
+    private static void updateBuchungDB(Connection conn, int passagierNr, int sitzplatz , int praeferenz, int reiseNr, boolean heizdecke, int id) throws SQLException {
 
-        DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, buchungsNr,id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, passagierNr, id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, sitzplatz, id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, praeferenz, id);
         DB.updateInt(conn, Table.BUCHUNGEN, Table.Buchungen.ReiseNr, reiseNr, id);
         DB.updateBool(conn, Table.BUCHUNGEN, Table.Buchungen.Heizdecke, heizdecke, id);
     }
-    public static void updateBuchung(Connection conn, Buchung buchung, int id) throws SQLException {
-        updateBuchungDB(conn, buchung.getBuchungsNr(), buchung.getPassagier().getPassagierNr(),
-                buchung.getSitzplatz(), buchung.getPraeferenz().getId(), buchung.getBusreise().getReiseNr(), buchung.isInklusiveHeizdecke(), id);
+    public static void updateBuchung(Connection conn, Buchung buchung, int buchungsNr) throws SQLException {
+        updateBuchungDB(conn, buchung.getPassagier().getPassagierNr(),
+                buchung.getSitzplatz(), buchung.getPraeferenz().getId(), buchung.getBusreise().getReiseNr(), buchung.isInklusiveHeizdecke(), buchungsNr);
     }
 
     // Delete object
@@ -269,7 +259,6 @@ public class BusreisenDB extends DB {
     // Bus
     public static Bus getBusByDBId(Connection conn, int id) throws SQLException {
         Bus bus = new Bus(DB.selectString(conn, Table.BUSSE, Table.Busse.Kennzeichen, id));
-
         bus.setBusTyp(BusTyp.getBusTypById(DB.selectInt(conn, Table.BUSSE, Table.Busse.BusTypNr, id)));
         bus.setZulassung(DB.selectDate(conn, Table.BUSSE, Table.Busse.Zulassung, id));
         bus.setTuevTermin(DB.selectDate(conn, Table.BUSSE, Table.Busse.TuevTermin, id));
@@ -278,7 +267,9 @@ public class BusreisenDB extends DB {
         return bus;
     }
     public static int getBusDBId(Connection conn, String kennzeichen) throws SQLException {
-        return DB.selectIdPerString(conn, Table.BUSSE, Table.Busse.Kennzeichen, kennzeichen);
+        if (!DB.selectIdsPerString(conn, Table.BUSSE, Table.Busse.Kennzeichen, kennzeichen).isEmpty())
+            return DB.selectIdsPerString(conn, Table.BUSSE, Table.Busse.Kennzeichen, kennzeichen).get(0);
+        return -1;
     }
     public static Bus getBus(Connection conn, String kennzeichen) throws SQLException {
         return getBusByDBId(conn, getBusDBId(conn, kennzeichen));
@@ -286,90 +277,115 @@ public class BusreisenDB extends DB {
 
     // Fahrer
     public static Fahrer getFahrerByDBId(Connection conn, int id) throws SQLException {
-        Fahrer fahrer = new Fahrer(DB.selectInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, id));
-
+        Fahrer fahrer = new Fahrer();
+        fahrer.setFahrerNr(id);
         fahrer.setName(DB.selectString(conn, Table.FAHRER, Table.Fahrer.Name, id));
         fahrer.setVorname(DB.selectString(conn, Table.FAHRER, Table.Fahrer.Vorname, id));
         fahrer.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.getFuehrerscheinklasseById
                 (DB.selectInt(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, id)));
         return fahrer;
     }
-    public static int getFahrerDBId(Connection conn, int fahrerNr) throws SQLException {
-        return DB.selectIdPerInt(conn, Table.FAHRER, Table.Fahrer.FahrerNr, fahrerNr);
+    public static List<Integer> getFahrerDBIds(Connection conn, String vorame, String name) throws SQLException {
+        return DB.selectIdsPerString(conn, Table.FAHRER, Table.Fahrer.Vorname, vorame, Table.Fahrer.Name, name);
     }
-    public static Fahrer getFahrer(Connection conn, int fahrerNr) throws SQLException {
-        return getFahrerByDBId(conn, getFahrerDBId(conn, fahrerNr));
+    public static List<Fahrer> getFahrer(Connection conn, String vorname, String name) throws SQLException {
+        List<Fahrer> fahrerList = new ArrayList<>();
+        List<Integer> fahrerIdList = getFahrerDBIds(conn, vorname, name);
+        for (Integer integer : fahrerIdList) {
+            fahrerList.add(getFahrerByDBId(conn, integer));
+        }
+        return fahrerList;
     }
 
     // Adresse
     public static Adresse getAdresseByDBId(Connection conn, int id) throws SQLException {
-        Adresse adresse = new Adresse(DB.selectInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, id));
-
+        Adresse adresse = new Adresse();
+        adresse.setAdresseId(id);
         adresse.setStrasse(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.Strasse, id));
         adresse.setHausnummer(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.Hausnummer, id));
         adresse.setPlz(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.PLZ, id));
         adresse.setOrt(DB.selectString(conn, Table.ADRESSEN, Table.Adressen.Ort, id));
         return adresse;
     }
-    public static int getAdresseDBId(Connection conn, int adresseId) throws SQLException {
-        return DB.selectIdPerInt(conn, Table.ADRESSEN, Table.Adressen.AdresseId, adresseId);
+    public static List<Integer> getAdresseDBIds(Connection conn, String plz) throws SQLException {
+        return DB.selectIdsPerString(conn, Table.ADRESSEN, Table.Adressen.PLZ, plz);
     }
-    public static Adresse getAdresse(Connection conn, int adresseId) throws SQLException {
-        return getAdresseByDBId(conn, getAdresseDBId(conn, adresseId));
+    public static List<Adresse> getAdresse(Connection conn, String plz) throws SQLException {
+        List<Adresse> adresseList = new ArrayList<>();
+        List<Integer> adresseIdList = getAdresseDBIds(conn, plz);
+        for (Integer integer : adresseIdList) {
+            adresseList.add(getAdresseByDBId(conn, integer));
+        }
+        return adresseList;
     }
 
     // Passagier
     public static Passagier getPassagierByDBId(Connection conn, int id) throws SQLException {
-        Passagier passagier = new Passagier(DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, id));
-
+        Passagier passagier = new Passagier();
+        passagier.setPassagierNr(id);
         passagier.setName(DB.selectString(conn, Table.PASSAGIERE, Table.Passagiere.Name, id));
         passagier.setVorname(DB.selectString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, id));
-        passagier.setAdresse(getAdresse(conn, DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, id)));
+        passagier.setAdresse(getAdresseByDBId(conn, DB.selectInt(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, id)));
         return passagier;
     }
-    public static int getPassagierDBId(Connection conn, int passagierNr) throws SQLException {
-        return DB.selectIdPerInt(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, passagierNr);
+    public static List<Integer> getPassagierDBIds(Connection conn, String vorame, String name) throws SQLException {
+        return DB.selectIdsPerString(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, vorame, Table.Passagiere.Name, name);
     }
-    public static Passagier getPassagier(Connection conn, int passagierNr) throws SQLException {
-        return getPassagierByDBId(conn, getPassagierDBId(conn, passagierNr));
+    public static List<Passagier> getPassagier(Connection conn, String vorname, String name) throws SQLException {
+        List<Passagier> passagierList = new ArrayList<>();
+        List<Integer> passagierIdList = getPassagierDBIds(conn, vorname, name);
+        for (Integer integer : passagierIdList) {
+            passagierList.add(getPassagierByDBId(conn, integer));
+        }
+        return passagierList;
     }
 
     // Busreise
     public static Busreise getBusreiseByDBId(Connection conn, int id) throws SQLException {
-        Busreise busreise = new Busreise(DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, id));
-
+        Busreise busreise = new Busreise();
+        busreise.setReiseNr(id);
         busreise.setFahrtbeginn(DB.selectTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, id));
         busreise.setFahrtende(DB.selectTimStamp(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, id));
-        busreise.setFahrer(getFahrer(conn, DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr,id)));
+        busreise.setFahrer(getFahrerByDBId(conn, DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr,id)));
         busreise.setBus(getBus(conn, DB.selectString(conn, Table.BUSREISEN, Table.Busreisen.BusKennzeichen, id)));
-        busreise.setZielort(getAdresse(conn, DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.AdresseId, id)));
+        busreise.setZielort(getAdresseByDBId(conn, DB.selectInt(conn, Table.BUSREISEN, Table.Busreisen.AdresseId, id)));
         busreise.setKostenProPerson(DB.selectDouble(conn, Table.BUSREISEN, Table.Busreisen.KostenProPerson, id));
         busreise.setSitzplaetze(DB.selectBoolArray(conn, Table.BUSREISEN, Table.Busreisen.Sitzplaetze, id));
         return busreise;
     }
-    public static int getBusreiseDBId(Connection conn, int reiseNr) throws SQLException {
-        return DB.selectIdPerInt(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, reiseNr);
+    public static List<Integer> getBusreiseDBIds(Connection conn, Adresse adresse) throws SQLException {
+        return DB.selectIdsPerInt(conn, Table.BUSREISEN, Table.Busreisen.AdresseId, adresse.getAdresseId());
     }
-    public static Busreise getBusreise(Connection conn, int reiseNr) throws SQLException {
-        return getBusreiseByDBId(conn, getBusreiseDBId(conn, reiseNr));
+    public static List<Busreise> getBusreise(Connection conn, Adresse adresse) throws SQLException {
+        List<Busreise> busreiseList = new ArrayList<>();
+        List<Integer> busreiseIdList = getBusreiseDBIds(conn, adresse);
+        for (Integer integer : busreiseIdList) {
+            busreiseList.add(getBusreiseByDBId(conn, integer));
+        }
+        return busreiseList;
     }
 
     // Buchung
     public static Buchung getBuchungByDBId(Connection conn, int id) throws SQLException {
-        Buchung buchung = new Buchung(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, id));
-
-        buchung.setPassagier(getPassagier(conn, DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, id)));
+        Buchung buchung = new Buchung();
+        buchung.setBuchungsNr(id);
+        buchung.setPassagier(getPassagierByDBId(conn, DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, id)));
         buchung.setSitzplatz(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, id));
         buchung.setPraeferenz(Praeferenz.getPraeferenzById(DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, id)));
-        buchung.setBusreise(getBusreise(conn, DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.ReiseNr, id)));
+        buchung.setBusreise(getBusreiseByDBId(conn, DB.selectInt(conn, Table.BUCHUNGEN, Table.Buchungen.ReiseNr, id)));
         buchung.setInklusiveHeizdecke(DB.selectBool(conn, Table.BUCHUNGEN, Table.Buchungen.Heizdecke, id));
         return buchung;
     }
-    public static int getBuchungDBId(Connection conn, int buchungsNr) throws SQLException {
-        return DB.selectIdPerInt(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, buchungsNr);
+    public static List<Integer> getBuchungDBIds(Connection conn, Busreise busreise) throws SQLException {
+        return DB.selectIdsPerInt(conn, Table.BUCHUNGEN, Table.Buchungen.ReiseNr, busreise.getReiseNr());
     }
-    public static Buchung getBuchung(Connection conn, int buchungsNr) throws SQLException {
-        return getBuchungByDBId(conn, getBuchungDBId(conn, buchungsNr));
+    public static List<Buchung> getBuchung(Connection conn, Busreise busreise) throws SQLException {
+        List<Buchung> buchungList = new ArrayList<>();
+        List<Integer> buchungIdList = getBuchungDBIds(conn, busreise);
+        for (Integer integer : buchungIdList) {
+            buchungList.add(getBuchungByDBId(conn, integer));
+        }
+        return buchungList;
     }
 
 }

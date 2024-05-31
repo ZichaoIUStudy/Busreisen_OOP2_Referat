@@ -11,11 +11,6 @@ public class Buchung {
     private Busreise busreise;
     private boolean inklusiveHeizdecke;
 
-    // buchungsNr must be assigned.
-    public Buchung(int buchungsNr) {
-        setBuchungsNr(buchungsNr);
-    }
-
     public int getBuchungsNr() {
         return buchungsNr;
     }

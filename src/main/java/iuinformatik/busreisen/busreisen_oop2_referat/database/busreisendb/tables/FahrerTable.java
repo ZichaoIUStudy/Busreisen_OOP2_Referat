@@ -6,51 +6,60 @@ import iuinformatik.busreisen.busreisen_oop2_referat.objects.Fahrer;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class FahrerTable {
 
     private static Fahrer[] defaultFahrerTable() {
-        Fahrer Fahrer1 = new Fahrer(1);
-        Fahrer1.setName("Müller");
-        Fahrer1.setVorname("Petra");
-        Fahrer1.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
+        Fahrer fahrer1 = new Fahrer();
+        fahrer1.setFahrerNr(1);
+        fahrer1.setName("Müller");
+        fahrer1.setVorname("Petra");
+        fahrer1.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
 
-        Fahrer Fahrer2 = new Fahrer(2);
-        Fahrer2.setName("Schmidt");
-        Fahrer2.setVorname("Thomas");
-        Fahrer2.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
+        Fahrer fahrer2 = new Fahrer();
+        fahrer2.setFahrerNr(2);
+        fahrer2.setName("Schmidt");
+        fahrer2.setVorname("Thomas");
+        fahrer2.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.B);
 
-        Fahrer Fahrer3 = new Fahrer(3);
-        Fahrer3.setName("Fischer");
-        Fahrer3.setVorname("Gabriele");
-        Fahrer3.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer3 = new Fahrer();
+        fahrer3.setFahrerNr(3);
+        fahrer3.setName("Fischer");
+        fahrer3.setVorname("Gabriele");
+        fahrer3.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer4 = new Fahrer(4);
-        Fahrer4.setName("Weber");
-        Fahrer4.setVorname("Wolfgang");
-        Fahrer4.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer4 = new Fahrer();
+        fahrer4.setFahrerNr(4);
+        fahrer4.setName("Weber");
+        fahrer4.setVorname("Wolfgang");
+        fahrer4.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer5 = new Fahrer(5);
-        Fahrer5.setName("Schulz");
-        Fahrer5.setVorname("Karin");
-        Fahrer5.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer5 = new Fahrer();
+        fahrer5.setFahrerNr(5);
+        fahrer5.setName("Schulz");
+        fahrer5.setVorname("Karin");
+        fahrer5.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer6 = new Fahrer(6);
-        Fahrer6.setName("Meyer");
-        Fahrer6.setVorname("Jürgen");
-        Fahrer6.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer6 = new Fahrer();
+        fahrer6.setFahrerNr(6);
+        fahrer6.setName("Meyer");
+        fahrer6.setVorname("Jürgen");
+        fahrer6.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer7 = new Fahrer(7);
-        Fahrer7.setName("Hoffmann");
-        Fahrer7.setVorname("Monika");
-        Fahrer7.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer7 = new Fahrer();
+        fahrer7.setFahrerNr(7);
+        fahrer7.setName("Hoffmann");
+        fahrer7.setVorname("Monika");
+        fahrer7.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        Fahrer Fahrer8 = new Fahrer(8);
-        Fahrer8.setName("Becker");
-        Fahrer8.setVorname("Hans");
-        Fahrer8.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
+        Fahrer fahrer8 = new Fahrer();
+        fahrer8.setFahrerNr(8);
+        fahrer8.setName("Becker");
+        fahrer8.setVorname("Hans");
+        fahrer8.setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse.D);
 
-        return new Fahrer[] {Fahrer1, Fahrer2, Fahrer3, Fahrer4, Fahrer5, Fahrer6, Fahrer7, Fahrer8 };
+        return new Fahrer[] {fahrer1, fahrer2, fahrer3, fahrer4, fahrer5, fahrer6, fahrer7, fahrer8 };
     }
 
     // DB Operations
@@ -60,27 +69,35 @@ public class FahrerTable {
 
     public static int initFahrer(Connection conn, Fahrer fahrer) throws SQLException {
         // check if it already exists in DB, if not then initialize it
-        if (!(BusreisenDB.getFahrer(conn, fahrer.getFahrerNr()).getFahrerNr()==(fahrer.getFahrerNr())))
-            return BusreisenDB.initFahrer(conn, fahrer);
-        else {
-            System.out.println("Der Fahrer mit FahrerNr " + fahrer.getFahrerNr() + " ist bereits bei der DB!");
-            return -1;
+        List<Integer> fahrerNrs = BusreisenDB.getFahrerDBIds(conn, fahrer.getVorname(), fahrer.getName());
+        if (fahrerNrs.isEmpty()) {
+            fahrer.setFahrerNr(BusreisenDB.initFahrer(conn, fahrer));
+            return fahrer.getFahrerNr();
         }
+
+        for (int i = 0; i < fahrerNrs.size(); i++) {
+            if (fahrerNrs.get(i) != fahrer.getFahrerNr()) {
+                fahrer.setFahrerNr(BusreisenDB.initFahrer(conn, fahrer));
+                return fahrer.getFahrerNr();
+            }
+        }
+        System.out.println("Der Fahrer mit FahrerNr " + fahrer.getFahrerNr() + " ist bereits bei der DB!");
+        return -1;
     }
 
-    public static void initFahrerGroup(Connection conn, Fahrer[] fahrere) throws SQLException {
-        for (Fahrer fahrer: fahrere) {
+    public static void initFahrerGroup(Connection conn, Fahrer[] fahrers) throws SQLException {
+        for (Fahrer fahrer: fahrers) {
             initFahrer(conn, fahrer);
         }
     }
 
     public static void updateFahrer(Connection conn, Fahrer fahrer) throws SQLException {
-        if (BusreisenDB.getFahrerDBId(conn, fahrer.getFahrerNr()) == -1)
+        if (BusreisenDB.getFahrerByDBId(conn, fahrer.getFahrerNr()).getName().equals("Error"))
             System.out.println("Die Daten wurden in der Datenbank nicht gefunden!");
-        else BusreisenDB.updateFahrer(conn, fahrer, BusreisenDB.getFahrerDBId(conn, fahrer.getFahrerNr()));
+        else BusreisenDB.updateFahrer(conn, fahrer, fahrer.getFahrerNr());
     }
 
-    public static Fahrer getFahrer(Connection conn, int fahrerNr) throws SQLException {
-        return BusreisenDB.getFahrer(conn, fahrerNr);
+    public static List<Fahrer> getFahrer(Connection conn, String vorname, String name) throws SQLException {
+        return BusreisenDB.getFahrer(conn, vorname, name);
     }
 }

@@ -56,4 +56,27 @@ public class BusreisenMethoden {
             System.err.println(e.getMessage());
         }
     }
+
+    public static void selectData(){
+
+        try (var conn =  DB.connect()){
+            System.out.println("_________Connected to the PostgreSQL database__________");
+            try {
+                conn.setAutoCommit(false);
+
+                System.out.println(BusreisenDB.getFahrerDBIds(conn, "Thomas", "Schmidt"));
+
+                System.out.println("_________Successfully print data from the database__________");
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+            } finally {
+                conn.setAutoCommit(true);
+                conn.close();
+            }
+            System.out.println("_________Finished operation in the database__________");
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }

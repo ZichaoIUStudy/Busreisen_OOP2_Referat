@@ -11,10 +11,10 @@ public class PaarbuchungsTest {
         kleinbus.setBusTyp(BusTyp.KLEINBUS);
         //kleinbus.setSitzplatzBesetzt(4, Boolean.TRUE); // wenn gesetzt dann Ausgabe 6, sonst 4
 
-        Busreise busreiseKleinbus = new Busreise(1);
+        Busreise busreiseKleinbus = new Busreise();
         busreiseKleinbus.setBus(kleinbus);
 
-        Paarbuchung pbKleinbus = new Paarbuchung(1);
+        Paarbuchung pbKleinbus = new Paarbuchung();
         pbKleinbus.setBusreise(busreiseKleinbus);
         pbKleinbus.setSitzplatz(5);
 
@@ -25,10 +25,10 @@ public class PaarbuchungsTest {
         reisebus.setBusTyp(BusTyp.REISEBUS);
         //reisebus.setSitzplatzBesetzt(55, Boolean.TRUE); // wenn gesetzt dann Ausgabe 57, sonst 55
 
-        Busreise busreiseReisebus = new Busreise(1);
+        Busreise busreiseReisebus = new Busreise();
         busreiseReisebus.setBus(reisebus);
 
-        Paarbuchung pbReisebus = new Paarbuchung(1);
+        Paarbuchung pbReisebus = new Paarbuchung();
         pbReisebus.setBusreise(busreiseReisebus);
         pbReisebus.setSitzplatz(56);
 

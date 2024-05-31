@@ -15,7 +15,7 @@ public class BesetzungsanzeigenTest {
         Bus kleinbus = new Bus("kleinbus");
         kleinbus.setBusTyp(BusTyp.KLEINBUS);
 
-        Busreise busreiseKleinbus = new Busreise(1);
+        Busreise busreiseKleinbus = new Busreise();
         busreiseKleinbus.setBus(kleinbus);
         busreiseKleinbus.setSitzplatzBesetzt(3, Boolean.TRUE);
         busreiseKleinbus.setSitzplatzBesetzt(4, Boolean.TRUE);
@@ -26,7 +26,7 @@ public class BesetzungsanzeigenTest {
         Bus reisebus = new Bus("reisebus");
         reisebus.setBusTyp(BusTyp.REISEBUS);
 
-        Busreise busreiseReisebus = new Busreise(2);
+        Busreise busreiseReisebus = new Busreise();
         busreiseReisebus.setBus(reisebus);
         busreiseReisebus.setSitzplatzBesetzt(5, Boolean.TRUE);
         busreiseReisebus.setSitzplatzBesetzt(19, Boolean.TRUE);
