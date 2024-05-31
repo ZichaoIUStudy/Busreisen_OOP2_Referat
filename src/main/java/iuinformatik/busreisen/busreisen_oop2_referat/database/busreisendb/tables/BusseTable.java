@@ -22,53 +22,8 @@ public class BusseTable {
         bus.setKostenProKilometer(1.2);
     }
 
-    private static Bus[] defaultBusseTable() {
-        Bus vw01 = new Bus("L-EK 6789");
-        setBusTypeEins(vw01);
-        vw01.setZulassung(Date.valueOf("2021-03-01"));
-        vw01.setTuevTermin(Date.valueOf("2025-03-01"));
-        vw01.setGefahreneKilometer(124.446);
-
-        Bus vw02 = new Bus("L-FR 1011");
-        setBusTypeEins(vw02);
-        vw02.setZulassung(Date.valueOf("2021-03-01"));
-        vw02.setTuevTermin(Date.valueOf("2025-03-01"));
-        vw02.setGefahreneKilometer(102.759);
-
-        Bus cityliner01 = new Bus("L-AF 1234");
-        setBusTypeZwei(cityliner01);
-        cityliner01.setZulassung(Date.valueOf("2015-05-01"));
-        cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner01.setGefahreneKilometer(862.345);
-
-        Bus cityliner02 = new Bus("L-BX 5678");
-        setBusTypeZwei(cityliner02);
-        cityliner02.setZulassung(Date.valueOf("2015-05-01"));
-        cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner02.setGefahreneKilometer(789.456);
-
-        Bus cityliner03 = new Bus("L-CG 9101");
-        setBusTypeZwei(cityliner03);
-        cityliner03.setZulassung(Date.valueOf("2016-07-01"));
-        cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner03.setGefahreneKilometer(678.901);
-
-        Bus cityliner04 = new Bus("L-DH 2345");
-        setBusTypeZwei(cityliner04);
-        cityliner04.setZulassung(Date.valueOf("2016-07-01"));
-        cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner04.setGefahreneKilometer(696.332);
-
-        return new Bus[]{vw01, vw02, cityliner01, cityliner02, cityliner03, cityliner04};
-    }
 
     // DB Operations
-    public static void createDefaultBusse(Connection conn) throws SQLException {
-        initBusGroup(conn, defaultBusseTable());
-        for (Bus bus: defaultBusseTable()) {
-            updateBus(conn, bus);
-        }
-    }
 
     public static int initBus(Connection conn, Bus bus) throws SQLException {
         // check if the bus with this Kennzeichen already exists in DB, if not then initialize it

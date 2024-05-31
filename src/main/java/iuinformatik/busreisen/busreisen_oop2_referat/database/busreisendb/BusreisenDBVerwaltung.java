@@ -39,9 +39,9 @@ public class BusreisenDBVerwaltung {
             try {
                 conn.setAutoCommit(false);
 
-                BusseTable.createDefaultBusse(conn);
-                AdressenTable.createDefaultAdressen(conn);
-                FahrerTable.createDefaultFahrer(conn);
+                //BusseTable.createDefaultBusse(conn);
+                //AdressenTable.createDefaultAdressen(conn);
+                //FahrerTable.createDefaultFahrer(conn);
 
                 System.out.println("_________Successfully initialize data in the database__________");
                 conn.commit();
