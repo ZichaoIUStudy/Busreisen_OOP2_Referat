@@ -5,7 +5,7 @@ import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 import java.util.*;
 import java.sql.Date;
 
-public class Bus {
+public class Bus implements Comparable<Bus> {
 
     private String kennzeichen;
     private BusTyp busTyp;
@@ -14,10 +14,6 @@ public class Bus {
     private Double gefahreneKilometer;
     private Double kostenProKilometer;
 
-    // Kennzeichen must be assigned.
-    public Bus(String kennzeichen) {
-        setKennzeichen(kennzeichen);
-    }
 
     public String getKennzeichen() {
         return kennzeichen;
@@ -70,5 +66,10 @@ public class Bus {
 
     public void setKostenProKilometer(Double kostenProKilometer) {
         this.kostenProKilometer = kostenProKilometer;
+    }
+
+    @Override
+    public int compareTo(Bus bus) {
+        return Comparator.comparing(Bus::getKennzeichen).compare(this, bus);
     }
 }

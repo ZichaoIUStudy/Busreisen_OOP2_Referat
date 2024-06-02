@@ -14,7 +14,10 @@ public enum Praeferenz {
     public int getId() {
         return id;
     }
-
+    /**
+     * @param id ID, der zu suchenden {@code Praeferenz}
+     * @return {@code Praeferenz}, welche zur angegebenen {@code id} passt
+     */
     public static Praeferenz getPraeferenzById(int id) {
         return switch (id) {
             case 1 -> FENSTERPLATZ;

@@ -2,7 +2,9 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Fuehrerscheinklasse;
 
-public class Fahrer {
+import java.util.Comparator;
+
+public class Fahrer implements Comparable<Fahrer> {
 
     private int fahrerNr;
     private String name;
@@ -40,5 +42,13 @@ public class Fahrer {
 
     public void setHoechsteFuehrerscheinklasse(Fuehrerscheinklasse hoechsteFuehrerscheinklasse) {
         this.hoechsteFuehrerscheinklasse = hoechsteFuehrerscheinklasse;
+    }
+
+    @Override
+    public int compareTo(Fahrer fahrer) {
+        return Comparator.comparing(Fahrer::getHoechsteFuehrerscheinklasse)
+                         .thenComparing(Fahrer::getName)
+                         .thenComparing(Fahrer::getVorname)
+                         .compare(this, fahrer);
     }
 }

@@ -1,6 +1,6 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleMethoden;
+import iuinformatik.busreisen.busreisen_oop2_referat.Util;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 
 import java.sql.*;
@@ -207,7 +207,7 @@ public class DB {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             Array sqlArray = rs.getArray(attribute);
-            return GlobaleMethoden.convertToPrimitive((Boolean[]) sqlArray.getArray());
+            return Util.convertToPrimitive((Boolean[]) sqlArray.getArray());
         }
         return new boolean[]{false};
     }
@@ -255,5 +255,4 @@ public class DB {
         }
         return ids;
     }
-
 }

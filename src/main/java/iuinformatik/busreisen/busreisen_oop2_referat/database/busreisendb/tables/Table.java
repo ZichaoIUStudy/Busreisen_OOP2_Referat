@@ -32,6 +32,7 @@ public enum Table {
         public static final String Hausnummer = "Hausnummer";
         public static final String PLZ = "PLZ";
         public static final String Ort = "Ort";
+        public static final String AdressTyp = "AdressTyp";
     }
 
     public static final class Passagiere {
@@ -59,6 +60,8 @@ public enum Table {
         public static final String Praeferenz = "Praeferenz";
         public static final String ReiseNr = "ReiseNr";
         public static final String Heizdecke = "InklusiveHeizdecke";
+        public static final String PassagierPartnerNr = "PassagierPartnerNr";
+        public static final String PartnerSitzplatz = "PartnerSitzplatz";
     }
 
     Table(String name) {

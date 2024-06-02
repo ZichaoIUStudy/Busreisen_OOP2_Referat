@@ -1,16 +1,12 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
-import iuinformatik.busreisen.busreisen_oop2_referat.Colors;
-import iuinformatik.busreisen.busreisen_oop2_referat.GlobaleMethoden;
+import iuinformatik.busreisen.busreisen_oop2_referat.Util;
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.BusTyp;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Busreise {
+public class Busreise implements Comparable<Busreise> {
 
     private int reiseNr;
     private Timestamp fahrtbeginn;
@@ -38,7 +34,7 @@ public class Busreise {
         this.fahrtbeginn = fahrtbeginn;
     }
 
-    public Timestamp getFahrtEnde() {
+    public Timestamp getFahrtende() {
         return fahrtende;
     }
 
@@ -60,7 +56,15 @@ public class Busreise {
 
     public void setBus(Bus bus) {
         this.bus = bus;
+
         this.sitzplaetze = new ArrayList<>(Collections.nCopies(bus.getBusTyp().getAnzahlSitzplaetze(), false));
+        this.setSitzplatzBesetzt(1, Boolean.TRUE);
+        if (this.getBus().getBusTyp().equals(BusTyp.KLEINBUS)) {
+            this.setSitzplatzBesetzt(2, Boolean.TRUE);
+        } else {
+            this.setSitzplatzBesetzt(3, Boolean.TRUE);
+            this.setSitzplatzBesetzt(4, Boolean.TRUE);
+        }
     }
 
     public Adresse getZielort() {
@@ -84,7 +88,7 @@ public class Busreise {
     }
 
     public void setSitzplaetze(boolean[] sitzplaetze) {
-        Boolean[] array = GlobaleMethoden.convertToBoolean(sitzplaetze);
+        Boolean[] array = Util.convertToBoolean(sitzplaetze);
         this.sitzplaetze = Arrays.asList(array);
     }
 
@@ -92,63 +96,80 @@ public class Busreise {
         this.sitzplaetze.set((sitzplatzNr - 1), besetzt);
     }
 
-    /**
-     * Ausgabe der aktuellen Besetzung des Busses (gebuchte und freie Sitzplätze).
-     */
-    public void showBusBesetzung() {
-        if (this.getBus().getBusTyp() == BusTyp.KLEINBUS) {
-            this.showKleinbusBesetzung();
-        } else if (this.getBus().getBusTyp() == BusTyp.REISEBUS) {
-            this.showReisebusBesetzung();
-        }
+    @Override
+    public int compareTo(Busreise busreise) {
+        return Comparator.comparing(Busreise::getZielort).thenComparing(Busreise::getFahrtbeginn).compare(this, busreise);
     }
 
     /**
-     * Generiert die Ausgabe der aktuellen Besetzung für Kleinbusse.
+     * @return aktuelle Bus-Besetzungsübersicht (gebuchte und freie Sitzplätze)
      */
-    private void showKleinbusBesetzung() {
-        System.out.println(Colors.RESET + "|=========|");
+    public String getBusBesetzung() {
+        String busBesetzung = this.getBusBesetzungsBeschreibung();
+        if (this.getBus().getBusTyp() == BusTyp.KLEINBUS) {
+            busBesetzung += this.getKleinbusBesetzung();
+        } else {
+            busBesetzung += this.getReisebusBesetzung();
+        }
+        return busBesetzung;
+    }
+
+    /**
+     * @return Legende der Bus-Besetzungsübersicht
+     */
+    private String getBusBesetzungsBeschreibung() {
+        return Util.Colors.BLUE + "F - Fahrer" + Util.Colors.RESET + "\n" +
+               Util.Colors.BLUE + "R - Reiseleiter" + Util.Colors.RESET + "\n" +
+               Util.Colors.RED + "X - Gebucht" + Util.Colors.RESET + "\n";
+    }
+
+    /**
+     * @return aktuelle Bus-Besetzungsübersicht für Kleinbusse.
+     */
+    private String getKleinbusBesetzung() {
+        StringBuilder outBuilder = new StringBuilder("|=========|\n");
 
         int index = 1;
         for (int i = 0; i < 3; i++) {
-            StringBuilder lineBuilder = new StringBuilder(Colors.RESET + "|");
+            StringBuilder lineBuilder = new StringBuilder(Util.Colors.RESET + "|");
 
             for (int j = 0; j < 3; j++) {
                 if (index == 1) {
-                    lineBuilder.append(Colors.BLUE + " F ");
+                    lineBuilder.append(Util.Colors.BLUE + " F ");
                 } else if (index == 2) {
-                    lineBuilder.append(Colors.BLUE + " R ");
+                    lineBuilder.append(Util.Colors.BLUE + " R ");
                 } else if (this.sitzplaetze.get(index - 1)) {
-                    lineBuilder.append(Colors.RED + " X ");
+                    lineBuilder.append(Util.Colors.RED + " X ");
                 } else {
-                    lineBuilder.append(" " + Colors.RESET).append(index).append(" ");
+                    lineBuilder.append(" " + Util.Colors.RESET).append(index).append(" ");
                 }
                 index++;
             }
-            lineBuilder.append(Colors.RESET + "|");
-            System.out.println(lineBuilder);
+            lineBuilder.append(Util.Colors.RESET + "|\n");
+            outBuilder.append(lineBuilder);
         }
-        System.out.println(Colors.RESET + "|=========|");
+        outBuilder.append(Util.Colors.RESET + "|=========|");
+        return outBuilder.toString();
     }
 
     /**
-     * Generiert die Ausgabe der aktuellen Besetzung für Reisebusse.
+     * @return aktuelle Bus-Besetzungsübersicht für Reisebusse.
      */
-    private void showReisebusBesetzung() {
-        System.out.println(Colors.RESET + "|====================|");
+    private String getReisebusBesetzung() {
+        StringBuilder outBuilder = new StringBuilder("|====================|\n");
 
         int index = 1;
         for (int i = 0; i < 15; i++) {
-            StringBuilder lineBuilder = new StringBuilder(Colors.RESET + "|");
+            StringBuilder lineBuilder = new StringBuilder(Util.Colors.RESET + "|");
 
             for (int j = 0; j < 5; j++) {
                 if ((j == 2 && index != 55) || ((j == 3 || j == 4) && (index == 27 || index == 29))) {
-                    lineBuilder.append(Colors.RESET + "    ");
+                    lineBuilder.append(Util.Colors.RESET + "    ");
                     continue;
                 } else if (index == 1) {
-                    lineBuilder.append(Colors.BLUE + "  F ");
+                    lineBuilder.append(Util.Colors.BLUE + "  F ");
                 } else if (index == 3 || index == 4) {
-                    lineBuilder.append(Colors.BLUE + "  R ");
+                    lineBuilder.append(Util.Colors.BLUE + "  R ");
                 } else {
                     if (String.valueOf(index).length() == 2 && !this.sitzplaetze.get(index - 1)) {
                         lineBuilder.append(" ");
@@ -156,16 +177,17 @@ public class Busreise {
                         lineBuilder.append("  ");
                     }
                     if (this.sitzplaetze.get(index - 1)) {
-                        lineBuilder.append(Colors.RED + "X ");
+                        lineBuilder.append(Util.Colors.RED + "X ");
                     } else {
-                        lineBuilder.append(Colors.RESET).append(index).append(" ");
+                        lineBuilder.append(Util.Colors.RESET).append(index).append(" ");
                     }
                 }
                 index++;
             }
-            lineBuilder.append(Colors.RESET + "|");
-            System.out.println(lineBuilder);
+            lineBuilder.append(Util.Colors.RESET + "|\n");
+            outBuilder.append(lineBuilder);
         }
-        System.out.println(Colors.RESET + "|====================|");
+        outBuilder.append(Util.Colors.RESET + "|====================|");
+        return outBuilder.toString();
     }
 }

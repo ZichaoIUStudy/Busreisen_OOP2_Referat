@@ -1,12 +1,15 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
-public class Adresse {
+import java.util.Comparator;
+
+public class Adresse implements Comparable<Adresse> {
 
     private int adresseId;
     private String strasse;
     private String hausnummer;
     private String plz;
     private String ort;
+    private int adressTyp;
 
     public int getAdresseId() {
         return adresseId;
@@ -49,4 +52,19 @@ public class Adresse {
         this.ort = ort;
     }
 
+    public int getAdressTyp() {
+        return adressTyp;
+    }
+
+    public void setAdressTyp(int adressTyp) {
+        this.adressTyp = adressTyp;
+    }
+
+    @Override
+    public int compareTo(Adresse adresse) {
+        return Comparator.comparing(Adresse::getOrt)
+                         .thenComparing(Adresse::getStrasse)
+                         .thenComparing(Adresse::getHausnummer)
+                         .compare(this, adresse);
+    }
 }

@@ -2,6 +2,9 @@ package iuinformatik.busreisen.busreisen_oop2_referat.objects;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.enums.Praeferenz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Buchung {
 
     private int buchungsNr;
@@ -58,5 +61,37 @@ public class Buchung {
 
     public void setInklusiveHeizdecke(boolean inklusive) {
         this.inklusiveHeizdecke = inklusive;
+    }
+
+    /**
+     * Weist automatisch den Sitzplatz anhand der gewählten {@code Buchung.praeferenz} zu.
+     */
+    public void setSitzplatzByPraeferenz() {
+        List<Boolean> sitzplaetze = this.getBusreise().getSitzplaetze();
+        if (this.praeferenz.equals(Praeferenz.FENSTERPLATZ)) {
+            for (int i = 0; i <= 52; i += 4) {
+                if (!sitzplaetze.get(i)) {
+                    this.setSitzplatz(i + 1);
+                    return;
+                }
+                if (!sitzplaetze.get(i + 3) && (i + 3) != 27) {
+                    this.setSitzplatz(i + 4);
+                    return;
+                }
+            }
+        } else if (this.praeferenz.equals(Praeferenz.GANGPLATZ)) {
+            for (int i = 1; i <= 53; i += 4) {
+                if (!sitzplaetze.get(i)) {
+                    this.setSitzplatz(i + 1);
+                    return;
+                }
+                if (!sitzplaetze.get(i + 1) && (i + 1) != 26) {
+                    this.setSitzplatz(i + 2);
+                    return;
+                }
+            }
+        } else {
+            this.setSitzplatz(sitzplaetze.indexOf(Boolean.FALSE) + 1);
+        }
     }
 }

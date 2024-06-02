@@ -12,6 +12,4 @@ module iuinformatik.busreisen.busreisen_oop2_referat {
     exports iuinformatik.busreisen.busreisen_oop2_referat;
     exports iuinformatik.busreisen.busreisen_oop2_referat.database;
     opens iuinformatik.busreisen.busreisen_oop2_referat.database to javafx.fxml;
-    exports iuinformatik.busreisen.busreisen_oop2_referat.test;
-    opens iuinformatik.busreisen.busreisen_oop2_referat.test to javafx.fxml;
 }

@@ -1,6 +1,35 @@
 package iuinformatik.busreisen.busreisen_oop2_referat;
 
-public class GlobaleMethoden {
+public class Util {
+
+    /**
+     * ANSI-Color-Codes zur Färbung des Konsolen-Textes
+     */
+    public static class Colors {
+        public static final String RESET = "\033[0;00m";
+        public static final String RED = "\033[0;31m";
+        public static final String GREEN = "\033[0;32m";
+        public static final String BLUE = "\033[0;34m";
+
+        /**
+         * @param description auszugebener Text
+         * @return Anzahl an ANSI-Color-Codes in {@code description}
+         */
+        public static int getColorCodesCount(String description) {
+            String findStr = "\033[";
+            int lastIndex = 0;
+            int count = 0;
+
+            while (lastIndex != -1) {
+                lastIndex = description.indexOf(findStr, lastIndex);
+                if (lastIndex != -1) {
+                    count ++;
+                    lastIndex += findStr.length();
+                }
+            }
+            return count;
+        }
+    }
 
     // Boolean[] to boolean[]
     public static boolean[] convertToPrimitive(Boolean[] booleanObjects) {

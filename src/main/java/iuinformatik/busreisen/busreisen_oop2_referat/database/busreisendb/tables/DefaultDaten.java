@@ -17,41 +17,47 @@ public class DefaultDaten {
     public static void defaultDatenBank() {
 
         // defalut busse
-        Bus vw01 = new Bus("L-EK 6789");
+        Bus vw01 = new Bus();
+        vw01.setKennzeichen("L-EK 6789");
         BusDB.setBusTypeEins(vw01);
         vw01.setZulassung(Date.valueOf("2021-03-01"));
         vw01.setTuevTermin(Date.valueOf("2025-03-01"));
-        vw01.setGefahreneKilometer(124.446);
+        vw01.setGefahreneKilometer(124446.0);
 
-        Bus vw02 = new Bus("L-FR 1011");
+        Bus vw02 = new Bus();
+        vw02.setKennzeichen("L-FR 1011");
         BusDB.setBusTypeEins(vw02);
         vw02.setZulassung(Date.valueOf("2021-03-01"));
         vw02.setTuevTermin(Date.valueOf("2025-03-01"));
-        vw02.setGefahreneKilometer(102.759);
+        vw02.setGefahreneKilometer(102759.0);
 
-        Bus cityliner01 = new Bus("L-AF 1234");
+        Bus cityliner01 = new Bus();
+        cityliner01.setKennzeichen("L-AF 1234");
         BusDB.setBusTypeZwei(cityliner01);
         cityliner01.setZulassung(Date.valueOf("2015-05-01"));
         cityliner01.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner01.setGefahreneKilometer(862.345);
+        cityliner01.setGefahreneKilometer(862345.0);
 
-        Bus cityliner02 = new Bus("L-BX 5678");
+        Bus cityliner02 = new Bus();
+        cityliner02.setKennzeichen("L-BX 5678");
         BusDB.setBusTypeZwei(cityliner02);
         cityliner02.setZulassung(Date.valueOf("2015-05-01"));
         cityliner02.setTuevTermin(Date.valueOf("2025-05-01"));
-        cityliner02.setGefahreneKilometer(789.456);
+        cityliner02.setGefahreneKilometer(789456.0);
 
-        Bus cityliner03 = new Bus("L-CG 9101");
+        Bus cityliner03 = new Bus();
+        cityliner03.setKennzeichen("L-CG 9101");
         BusDB.setBusTypeZwei(cityliner03);
         cityliner03.setZulassung(Date.valueOf("2016-07-01"));
         cityliner03.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner03.setGefahreneKilometer(678.901);
+        cityliner03.setGefahreneKilometer(678901.0);
 
-        Bus cityliner04 = new Bus("L-DH 2345");
+        Bus cityliner04 = new Bus();
+        cityliner04.setKennzeichen("L-DH 2345");
         BusDB.setBusTypeZwei(cityliner04);
         cityliner04.setZulassung(Date.valueOf("2016-07-01"));
         cityliner04.setTuevTermin(Date.valueOf("2024-07-01"));
-        cityliner04.setGefahreneKilometer(696.332);
+        cityliner04.setGefahreneKilometer(696332.0);
 
         Bus[] defaultbusse = new Bus[]{vw01, vw02, cityliner01, cityliner02, cityliner03, cityliner04};
 
@@ -115,6 +121,7 @@ public class DefaultDaten {
         adresse1.setHausnummer("1");
         adresse1.setPlz("04109");
         adresse1.setOrt("Leipzig");
+        adresse1.setAdressTyp(0);
         adressen[0] = adresse1;
 
         Adresse adresse2 = new Adresse();
@@ -123,6 +130,7 @@ public class DefaultDaten {
         adresse2.setHausnummer("3");
         adresse2.setPlz("01067");
         adresse2.setOrt("Dresden");
+        adresse2.setAdressTyp(0);
         adressen[1] = adresse2;
 
         Adresse adresse3 = new Adresse();
@@ -131,6 +139,7 @@ public class DefaultDaten {
         adresse3.setHausnummer("5");
         adresse3.setPlz("10178");
         adresse3.setOrt("Berlin");
+        adresse3.setAdressTyp(0);
         adressen[2] = adresse3;
 
         Adresse adresse4 = new Adresse();
@@ -139,6 +148,7 @@ public class DefaultDaten {
         adresse4.setHausnummer("7");
         adresse4.setPlz("80331");
         adresse4.setOrt("München");
+        adresse4.setAdressTyp(0);
         adressen[3] = adresse4;
 
         Adresse adresse5 = new Adresse();
@@ -147,6 +157,7 @@ public class DefaultDaten {
         adresse5.setHausnummer("2");
         adresse5.setPlz("99084");
         adresse5.setOrt("Erfurt");
+        adresse5.setAdressTyp(0);
         adressen[4] = adresse5;
 
         Adresse adresse6 = new Adresse();
@@ -155,6 +166,7 @@ public class DefaultDaten {
         adresse6.setHausnummer("4");
         adresse6.setPlz("30159");
         adresse6.setOrt("Hannover");
+        adresse6.setAdressTyp(0);
         adressen[5] = adresse6;
 
         /*
