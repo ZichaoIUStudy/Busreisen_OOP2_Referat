@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Activities to operate Fahrer Object in DB.
+ */
 public class FahrerDB {
 
     public static int initFahrer(Connection conn, Fahrer fahrer) throws SQLException {

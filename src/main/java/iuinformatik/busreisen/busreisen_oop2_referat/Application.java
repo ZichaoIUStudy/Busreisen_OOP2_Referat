@@ -38,13 +38,8 @@ public class Application extends javafx.application.Application {
 
         Button create_default_table = new Button("create default table");
         create_default_table.setOnMouseClicked(mouseEvent -> {
-            BusreisenDBVerwaltung.buildTableBase();
+            BusreisenDBVerwaltung.createDefaultData();
 
-        });
-
-        Button init_data = new Button("init data");
-        init_data.setOnMouseClicked(mouseEvent -> {
-            BusreisenDBVerwaltung.insertDefaultData();
         });
 
         TextField vorname = new TextField();
@@ -55,12 +50,8 @@ public class Application extends javafx.application.Application {
         name.setPromptText("Name");
         name.setMaxWidth(80);
 
-        Button get_driver_id = new Button("get driver id");
-        get_driver_id.setOnMouseClicked(mouseEvent -> {
-            BusreisenVerwaltung.showDriverId(vorname.getText(), name.getText());
-        });
 
-        menu.getChildren().addAll(create_default_table, init_data, vorname, name, get_driver_id);
+        menu.getChildren().addAll(create_default_table, vorname, name);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(menu);
@@ -305,7 +296,7 @@ public class Application extends javafx.application.Application {
         TreeMap<Integer, Fahrer> fahrerMap = Reiseverwaltung.getFahrer();
         String auswahl = select(
             "FAHRER ENTFERNEN",
-            "Wählen Sie den Fahrer aus, der entfernt werden soll:\n" + getFahrerListe(fahrerMap.values()),
+            "Wählen Sie den Fahrer aus, der entfernt werden soll:\n" + getFahrerListe(fahrerMap.values().stream().toList()),
             Arrays.stream(fahrerMap.keySet().toArray(Integer[]::new))
                   .map(String::valueOf)
                   .toArray(String[]::new)
@@ -415,7 +406,7 @@ public class Application extends javafx.application.Application {
 
         String auswahlFahrer = select(
                 title,
-                "Wählen Sie einen Fahrer für die Reise aus:\n" + getFahrerListe(fahrerMap.values()),
+                "Wählen Sie einen Fahrer für die Reise aus:\n" + getFahrerListe(fahrerMap.values().stream().toList()),
                 fahrerMap.keySet().stream().map(String::valueOf).toArray(String[]::new)
         );
         Fahrer fahrer = Reiseverwaltung.getFahrer().get(Integer.parseInt(auswahlFahrer));

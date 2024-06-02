@@ -13,47 +13,50 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// for every object in DB, this class offers init/update/select methods, delete method is not suggested to use.
+/**
+ * for every object in DB, this class offers init/update/select methods, delete method is not suggested to use.
+ */
 public class BusreisenDB extends DB {
 
+    /**
+     * Create default Table structure, according to this project.
+     * @param conn
+     * @throws SQLException
+     */
     protected static void createTables(Connection conn) throws SQLException {
         // create Busse table
-        DB.create(conn, Table.BUSSE);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.Kennzeichen, DBType.String);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.Zulassung, DBType.Date);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.TuevTermin, DBType.Date);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.GefahreneKilo, DBType.Double);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.KostenProKilo, DBType.Double);
-        DB.addColumn(conn, Table.BUSSE, Table.Busse.BusTypNr, DBType.Int);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.create(conn, Table.BUSSE);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.Kennzeichen, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.Zulassung, DBType.Date);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.TuevTermin, DBType.Date);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.GefahreneKilo, DBType.Double);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.KostenProKilo, DBType.Double);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSSE, Table.Busse.BusTypNr, DBType.Int);
 
         // create Fahrer table
-        DB.create(conn, Table.FAHRER);
-        //DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FahrerNr, DBType.Int);
-        DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Name, DBType.String);
-        DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Vorname, DBType.String);
-        DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, DBType.Int);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.create(conn, Table.FAHRER);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Name, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.FAHRER, Table.Fahrer.Vorname, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.FAHRER, Table.Fahrer.FuehrerscheinKlasse, DBType.Int);
 
         // create Adressen table
-        DB.create(conn, Table.ADRESSEN);
-        //DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.AdresseId, DBType.Int);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Strasse, DBType.LongString);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Hausnummer, DBType.String);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.PLZ, DBType.String);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Ort, DBType.LongString);
-        DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.AdressTyp, DBType.Int);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.create(conn, Table.ADRESSEN);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Strasse, DBType.LongString);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Hausnummer, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.PLZ, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.Ort, DBType.LongString);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.ADRESSEN, Table.Adressen.AdressTyp, DBType.Int);
 
         // create Passagiere table
-        DB.create(conn, Table.PASSAGIERE);
-        //DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.PassagierNr, DBType.Int);
-        DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Name, DBType.String);
-        DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, DBType.String);
-        DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, DBType.Int);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.create(conn, Table.PASSAGIERE);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Name, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.Vorname, DBType.String);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.PASSAGIERE, Table.Passagiere.AdressId, DBType.Int);
 
         // create Busreisen table
-        DB.create(conn, Table.BUSREISEN);
-        //DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.ReiseNr, DBType.Int);
-        DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, DBType.TimeStamp);
-        DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, DBType.TimeStamp);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.create(conn, Table.BUSREISEN);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtbeginn, DBType.TimeStamp);
+        iuinformatik.busreisen.busreisen_oop2_referat.database.DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.Fahrtende, DBType.TimeStamp);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.FahrerNr, DBType.Int);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.BusKennzeichen, DBType.String);
         DB.addColumn(conn, Table.BUSREISEN, Table.Busreisen.AdresseId, DBType.Int);
@@ -62,7 +65,6 @@ public class BusreisenDB extends DB {
 
         // create Buchungen table
         DB.create(conn, Table.BUCHUNGEN);
-        //DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.BuchungsNr, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.PassagierNr, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.Sitzplatz, DBType.Int);
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.Praeferenz, DBType.Int);
@@ -72,6 +74,13 @@ public class BusreisenDB extends DB {
         DB.addColumn(conn, Table.BUCHUNGEN, Table.Buchungen.PartnerSitzplatz, DBType.Int);
     }
 
+    /**
+     * Initialize the object of this project in DB.
+     * For every object there are two initialization methods. One is private, called directly from {@code DB}.
+     * In this method, the sensitive data will be transformed. It calls first the insert function, and then update function multiple times to
+     * apply different objects. It's privately packed, so the sql statements are protected.
+     * Another method is public, and requires only the connection of DB and the object itself.
+     */
     // Initialize objects
     // Bus
     private static int initializeBusDB(Connection conn, String kennzeichen, int busTypNr, Date zulassung, Date tuevTermin, Double gefahreneKilo, Double kostenProKilo) throws SQLException {
@@ -186,7 +195,11 @@ public class BusreisenDB extends DB {
                 paarbuchung.isInklusiveHeizdecke(), paarbuchung.getPartnerSitzplatz(), paarbuchung.getPassagierPartner().getPassagierNr());
     }
 
-    // Update objects
+    /**
+     * Update the object of this project in DB.
+     * Similar to Insert, for each object it still has two methods. One is private to protect the sql statement,
+     * another is public which should be used.
+     */
     // Bus
     private static void updateBusDB(Connection conn, int busTypNr, Date zulassung, Date tuevTermin,
                                    Double gefahreneKilo, Double kostenProKilo, int id) throws SQLException {
@@ -291,7 +304,19 @@ public class BusreisenDB extends DB {
         DB.delete(conn, table, id);
     }
 
-    // Select objects
+    /**
+     * Select the object of this project in DB.
+     * Select is a little bit different from insert and update, because select can return multiple object at once.
+     * It has for each object three/four(if this object needs to be called "select all" function).
+     * First function getObjectByDBId returns the single object depending on its id.
+     * Second function returns the ID list according to the search parameter.
+     * Third function using the loop returns a list with all the objects fitting the required search parameter by the second function.
+     * Fourth (if the application needs the list of all this object), returns the list of all the Objects in DB.
+     * @param conn
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     // Bus
     public static Bus getBusByDBId(Connection conn, int id) throws SQLException {
         Bus bus = new Bus();
@@ -319,7 +344,7 @@ public class BusreisenDB extends DB {
      * @throws SQLException
      */
     public static List<Bus> getBusListe(Connection con) throws SQLException {
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM %s;".formatted(Table.BUSSE));
+        ResultSet rs = DB.selectAll(con, Table.BUSSE);
         List<Bus> busse = new ArrayList<>();
         while (rs.next()) {
             Bus bus = new Bus();
@@ -363,7 +388,7 @@ public class BusreisenDB extends DB {
      * @throws SQLException
      */
     public static List<Fahrer> getFahrerListe(Connection con) throws SQLException {
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM %s;".formatted(Table.FAHRER));
+        ResultSet rs = DB.selectAll(con, Table.FAHRER);
         List<Fahrer> fahrerListe = new ArrayList<>();
         while (rs.next()) {
             Fahrer fahrer = new Fahrer();
@@ -406,7 +431,7 @@ public class BusreisenDB extends DB {
      * @throws SQLException
      */
     public static List<Adresse> getReiseAdressenListe(Connection con) throws SQLException {
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM %s WHERE %s=1;".formatted(Table.ADRESSEN, Table.Adressen.AdressTyp));
+        ResultSet rs = DB.selectAll(con, Table.ADRESSEN);
         List<Adresse> adressenListe = new ArrayList<>();
         while (rs.next()) {
             if (rs.getInt(Table.Adressen.AdressTyp) == 1) {
@@ -476,7 +501,7 @@ public class BusreisenDB extends DB {
      * @throws SQLException
      */
     public static List<Busreise> getBusreisenListe(Connection con) throws SQLException {
-        ResultSet rs = con.createStatement().executeQuery("SELECT * FROM %s;".formatted(Table.BUSREISEN));
+        ResultSet rs = DB.selectAll(con, Table.BUSREISEN);
         List<Busreise> busreisen = new ArrayList<>();
         while (rs.next()) {
             Busreise busreise = new Busreise();

@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Activities to operate Passagier Object in DB.
+ */
 public class PassagierDB {
 
     public static int initPassagier(Connection conn, Passagier passagier) throws SQLException {

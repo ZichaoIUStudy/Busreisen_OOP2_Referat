@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Using java.io to get the database user information.
+ * Data are fetched from application.properties file.
+ */
 public class DBConfig {
 
     private static final Properties properties = new Properties();

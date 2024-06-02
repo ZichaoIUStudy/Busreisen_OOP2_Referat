@@ -31,7 +31,11 @@ public class Util {
         }
     }
 
-    // Boolean[] to boolean[]
+    /**
+     * Convert Boolean[] to primitive boolean[] data typ.
+     * @param booleanObjects
+     * @return return the boolean array.
+     */
     public static boolean[] convertToPrimitive(Boolean[] booleanObjects) {
         // Check if the input array is null
         if (booleanObjects == null) {
@@ -52,7 +56,11 @@ public class Util {
         return booleanPrimitives;
     }
 
-    // boolean[] to Boolean[]
+    /**
+     * Convert boolean[] to Boolean[] data typ.
+     * @param booleanPrimitives
+     * @return return the Boolean array.
+     */
     public static Boolean[] convertToBoolean(boolean[] booleanPrimitives) {
         // Check if the input array is null
         if (booleanPrimitives == null) {

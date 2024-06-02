@@ -1,5 +1,8 @@
 package iuinformatik.busreisen.busreisen_oop2_referat.database;
 
+/**
+ * Enum for exchanging the name of java data type to sql data type.
+ */
 public enum DBType {
     String("VARCHAR(50)"),
     LongString("VARCHAR(255)"),

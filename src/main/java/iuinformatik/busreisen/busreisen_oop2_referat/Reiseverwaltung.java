@@ -2,6 +2,7 @@ package iuinformatik.busreisen.busreisen_oop2_referat;
 
 import iuinformatik.busreisen.busreisen_oop2_referat.database.DB;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.BusreisenDB;
+import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.objectMethods.*;
 import iuinformatik.busreisen.busreisen_oop2_referat.database.busreisendb.tables.Table;
 import iuinformatik.busreisen.busreisen_oop2_referat.objects.*;
 
@@ -177,7 +178,7 @@ public class Reiseverwaltung {
         try (var con = DB.connect()) {
             try {
                 con.setAutoCommit(false);
-                BusreisenDB.initBus(con, bus);
+                BusDB.initBus(con, bus);
                 con.commit();
             } catch (SQLException e) {
                 con.rollback();
@@ -219,7 +220,7 @@ public class Reiseverwaltung {
         try (var con = DB.connect()) {
             try {
                 con.setAutoCommit(false);
-                BusreisenDB.initFahrer(con, fahrer);
+                FahrerDB.initFahrer(con, fahrer);
                 con.commit();
             } catch (SQLException e) {
                 con.rollback();
@@ -268,7 +269,7 @@ public class Reiseverwaltung {
                 int passagierNr = BusreisenDB.initPassagier(con, buchung.getPassagier());
                 buchung.getPassagier().setPassagierNr(passagierNr);
 
-                BusreisenDB.initBuchung(con, buchung);
+                BuchungDB.initBuchung(con, buchung);
                 BusreisenDB.updateBusreise(con, busreise, busreise.getReiseNr());
 
                 con.commit();
@@ -293,18 +294,18 @@ public class Reiseverwaltung {
             try {
                 con.setAutoCommit(false);
 
-                int adressId = BusreisenDB.initAdresse(con, paarbuchung.getPassagier().getAdresse());
+                int adressId = AdresseDB.initAdresse(con, paarbuchung.getPassagier().getAdresse());
                 paarbuchung.getPassagier().getAdresse().setAdresseId(adressId);
-                int passagierNr = BusreisenDB.initPassagier(con, paarbuchung.getPassagier());
+                int passagierNr = PassagierDB.initPassagier(con, paarbuchung.getPassagier());
                 paarbuchung.getPassagier().setPassagierNr(passagierNr);
 
-                int partnerAdressId = BusreisenDB.initAdresse(con, paarbuchung.getPassagierPartner().getAdresse());
+                int partnerAdressId = AdresseDB.initAdresse(con, paarbuchung.getPassagierPartner().getAdresse());
                 paarbuchung.getPassagier().getAdresse().setAdresseId(partnerAdressId);
-                int passagierPartnerNr = BusreisenDB.initPassagier(con, paarbuchung.getPassagierPartner());
+                int passagierPartnerNr = PassagierDB.initPassagier(con, paarbuchung.getPassagierPartner());
                 paarbuchung.getPassagierPartner().setPassagierNr(passagierPartnerNr);
 
-                BusreisenDB.initBuchung(con, paarbuchung);
-                BusreisenDB.updateBusreise(con, busreise, busreise.getReiseNr());
+                BuchungDB.initBuchung(con, paarbuchung);
+                ReiseDB.updateBusreise(con, busreise);
 
                 con.commit();
             } catch (SQLException e) {

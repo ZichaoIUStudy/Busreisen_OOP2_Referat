@@ -8,7 +8,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BusreiseDB {
+/**
+ * Activities to operate Busreise Object in DB.
+ */
+public class ReiseDB {
 
     public static int initBusreise(Connection conn, Busreise busreise) throws SQLException {
         // check if it already exists in DB, if not then initialize it
